@@ -128,5 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-data/
+#JB IDE
+.idea/
+
+#Tests
 test/
