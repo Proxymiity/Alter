@@ -1,3 +1,5 @@
+#original file from twentysix's discord bot - it might need to be reworked
+
 import json
 import os
 import logging
