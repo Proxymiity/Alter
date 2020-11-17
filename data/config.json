@@ -1,5 +1,10 @@
 {
-    "loadPlugins" : [],
+    "name" : "Alter3",
     "prefix" : "::",
-    "token" : ""
+    "loadPlugins" : [
+        "plugins.core"
+    ],
+    "lang" : "fr_FR",
+    "token" : "",
+    "owner" : 0
 }

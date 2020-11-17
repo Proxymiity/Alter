@@ -1,0 +1,11 @@
+{
+  "help_title" : "Aide",
+  "help_desc" : "Faites {0}help [commande] pour en savoir plus sur une commande.",
+  "help_all" : "Toutes les commandes",
+  "help_undef" : ":octagonal_sign:",
+
+  "core" : "Commandes principales du bot (aide, ping, etc.)",
+
+  "help_brief" : "Affiche les commandes disponibles",
+  "help_help" : "Affiche toutes les commandes disponibles. Par défaut, affiche la liste des modules.\nVous pouvez obtenir l'aide sur une commande précise avec `{0}help [commande]`, l'aide sur un module avec `{0}help [module]` et toutes les commandes avec `{0}help all`"
+}

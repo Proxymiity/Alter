@@ -1,25 +1,34 @@
 import discord
 from discord.ext import commands
 from utils.dataIO import dataIO
+from utils import locale
 
 config = dataIO.load_json("data/config.json")
 token = config["token"]
 prefix = config["prefix"]
+lang = locale.load(config["lang"], "alter")
 bot = commands.Bot(prefix)
 
 
 @bot.event
 async def on_ready():
-    print("Logged in as {}".format(bot.user))
+    print(lang["logged_in_as"].format(bot.user))
     bot.remove_command("help")
     for p in config["loadPlugins"]:
-        print("Loading extension " + p)
+        print(lang["loading_ext"].format(p))
         bot.load_extension(p)
+    print(bot.commands)
+    return
+    plugins = {}
+    cogs = bot.cogs
+    for cog in cogs:
+        plugins[cog.lower()] = cogs[cog]
+    print(plugins)
 
 
 @bot.event
 async def on_command_error(ctx, error):
-    c = ctx.message.channel
+    # c = ctx.message.channel
     if isinstance(error, commands.MissingRequiredArgument):
         print("Missing required argument.")
     elif isinstance(error, commands.BadArgument):
@@ -47,5 +56,5 @@ async def on_command_error(ctx, error):
         print("Uncaught exception. {}".format(error))
 
 
-print("Logging in with token {}...".format(token[0:5]))
+print(lang["logging_in"].format(token[0:5]))
 bot.run(token)

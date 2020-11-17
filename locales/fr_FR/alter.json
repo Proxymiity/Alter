@@ -1,0 +1,5 @@
+{
+  "logging_in" : "Connexion avec le token {0}...",
+  "logged_in_as" : "Connecté en tant que {0}.",
+  "loading_ext" : "Chargement de l'extension {0}"
+}
