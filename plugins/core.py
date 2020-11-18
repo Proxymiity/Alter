@@ -1,11 +1,13 @@
-import discord
 from discord.ext import commands
-from utils import checks
+from utils.dataIO import dataIO
+from utils import locale
 from utils import help as h
+
+config = dataIO.load_json("data/config.json")
+loc = locale.load(config["locale"], "utils.help")
 
 
 class Core(commands.Cog, command_attrs=dict(hidden=True)):
-    """core"""
     def __init__(self, bot):
         self.bot = bot
 
@@ -17,10 +19,12 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
                 return
             for cog in self.bot.cogs:
                 if query.lower() == cog.lower():
-                    await h.send_plugin_help(self.bot, ctx, self.bot.cogs[cog])
+                    await h.send_plugin_help(ctx, self.bot.cogs[cog])
                     return
             if any(c.name == query.lower() for c in self.bot.commands):
-                await h.send_cmd_help(self.bot, ctx, self.bot.get_command(query.lower()))
+                await h.send_cmd_help(ctx, self.bot.get_command(query.lower()))
+                return
+            await ctx.send(loc["help_not_found"])
         else:
             await h.summary(self.bot, ctx)
 

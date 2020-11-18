@@ -2,12 +2,12 @@ from utils.dataIO import dataIO
 import os
 
 
-def load(lang, module):
-    file = "locales/{}/{}.json".format(lang, module)
+def load(locale, module):
+    file = "locales/{}/{}.json".format(locale, module)
     if os.path.isfile(file):
         return dataIO.load_json(file)
     else:
-        print("Locale {}/{} not found!".format(lang, module))
-        settings = dataIO.load_json("data/locale.json")  # todo merge locale.json and config.json as fallback_lang?
-        file = "locales/" + settings["fallback"] + "/{}.json".format(module)
+        print("Locale {}/{} not found!".format(locale, module))
+        config = dataIO.load_json("data/config.json")
+        file = "locales/" + config["fallback_locale"] + "/{}.json".format(module)
         return dataIO.load_json(file)

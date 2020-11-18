@@ -2,59 +2,60 @@ import discord
 from discord.ext import commands
 from utils.dataIO import dataIO
 from utils import locale
+from utils import help
 
 config = dataIO.load_json("data/config.json")
 token = config["token"]
 prefix = config["prefix"]
-lang = locale.load(config["lang"], "alter")
+loc = locale.load(config["locale"], "alter")
 bot = commands.Bot(prefix)
 
 
 @bot.event
 async def on_ready():
-    print(lang["logged_in_as"].format(bot.user))
+    print(loc["logged_in_as"].format(bot.user))
     bot.remove_command("help")
     for p in config["loadPlugins"]:
-        print(lang["loading_ext"].format(p))
+        print(loc["loading_ext"].format(p))
         bot.load_extension(p)
-    print(bot.commands)
-    return
-    plugins = {}
-    cogs = bot.cogs
-    for cog in cogs:
-        plugins[cog.lower()] = cogs[cog]
-    print(plugins)
 
 
 @bot.event
 async def on_command_error(ctx, error):
-    # c = ctx.message.channel
     if isinstance(error, commands.MissingRequiredArgument):
-        print("Missing required argument.")
+        if ctx.invoked_subcommand:
+            await help.send_cmd_help(ctx, ctx.invoked_subcommand, error=True)
+        else:
+            await help.send_cmd_help(ctx, ctx.command, error=True)
     elif isinstance(error, commands.BadArgument):
-        print("Bad argument.")
+        if ctx.invoked_subcommand:
+            await help.send_cmd_help(ctx, ctx.invoked_subcommand, error=True)
+        else:
+            await help.send_cmd_help(ctx, ctx.command, error=True)
     elif isinstance(error, commands.DisabledCommand):
-        print("Disabled command.")
+        await ctx.send(loc["err_disabled"])
     elif isinstance(error, commands.CommandInvokeError):
         if isinstance(error.original, discord.Forbidden):
-            print("Discord Forbidden.")
+            await ctx.send(loc["err_missing_perm"])
         elif "Missing Permission" in "{}".format(error):
-            print("Missing Permission. {}".format(error))
+            await ctx.send(loc["err_missing_perm"])
         elif "FORBIDDEN" in "{}".format(error):
-            print("Forbidden. {}".format(error))
+            await ctx.send(loc["err_missing_perm"])
         else:
-            print("Execution Error. {}".format(error))
+            await ctx.send(loc["err_exec"].format(error))
     elif isinstance(error, commands.CommandNotFound):
         pass
     elif isinstance(error, commands.CheckFailure):
         pass
     elif isinstance(error, commands.NoPrivateMessage):
-        print("Command not usable in DM.")
+        await ctx.send(loc["err_pm"])
     elif isinstance(error, commands.CommandOnCooldown):
-        print("Command is on cooldown.")
+        await ctx.send(loc["err_cd"].format(error.retry_after))
     else:
-        print("Uncaught exception. {}".format(error))
+        print("Uncaught exception {}".format(error))
+        dataIO.save_json("error.json", [error])
+        await ctx.send(loc["err_uncaught"])
 
 
-print(lang["logging_in"].format(token[0:5]))
+print(loc["logging_in"].format(token[0:5]))
 bot.run(token)

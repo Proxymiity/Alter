@@ -1,10 +1,12 @@
 {
     "name" : "Alter3",
     "prefix" : "::",
-    "loadPlugins" : [
-        "plugins.core"
-    ],
-    "lang" : "fr_FR",
+    "locale" : "fr_FR",
+    "fallback_locale" : "fr_FR",
     "token" : "",
-    "owner" : 0
+    "owner" : 0,
+    "loadPlugins" : [
+        "plugins.test",
+        "plugins.core"
+    ]
 }
