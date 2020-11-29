@@ -4,5 +4,9 @@
   "test" : "Module de test",
 
   "help_brief" : "Affiche les commandes disponibles",
-  "help_help" : "Affiche toutes les commandes disponibles. Par défaut, affiche la liste des modules.\nVous pouvez obtenir l'aide sur une commande précise avec `{0}help [commande]`, l'aide sur un module avec `{0}help [module]` et toutes les commandes avec `{0}help all`"
+  "help_help" : "Affiche toutes les commandes disponibles. Par défaut, affiche la liste des modules.\nVous pouvez obtenir l'aide sur une commande précise avec `{0}help [commande]`, l'aide sur un module avec `{0}help [module]` et toutes les commandes avec `{0}help all`",
+  "info_brief" : "Affiche des informations sur le bot",
+  "info_help" : "Affiche la version du bot, le propriétaire, le nombre de serveurs, et d'autres informations",
+  "plugin_brief" : "Gère le chargement des plugins",
+  "plugin_help" : "Permet de gérer l'état d'un plugin. Faites `{0}plugin load` pour charger un plugin, et `{0}plugin unload` pour décharger un plugin.\nPour le charger au démarrage, ajoutez `-config`, par exemple `{0}plugin load plugins.tools -config`"
 }

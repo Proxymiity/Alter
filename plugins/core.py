@@ -1,8 +1,7 @@
 import discord
 from discord.ext import commands
 from utils.dataIO import dataIO
-from utils import locale
-from utils import help as h
+from utils import locale, checks, help
 
 config = dataIO.load_json("data/config.json")
 loc = locale.load(config["locale"], "plugins.core")
@@ -12,7 +11,43 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(hidden=False, help="help_help", brief="help_brief")
+    @commands.group(help="plugin_help", brief="plugin_brief")
+    @checks.bot_owner()
+    async def plugin(self, ctx):
+        if ctx.invoked_subcommand is None:
+            await help.send_cmd_help(ctx, ctx.command)
+
+    @plugin.command(help="plugin_help", brief="plugin_brief")
+    @checks.bot_owner()
+    async def load(self, ctx, ext, store=None):
+        try:
+            self.bot.load_extension(ext)
+            await ctx.send(loc["ext_loaded"].format(ext))
+        except commands.ExtensionNotFound:
+            await ctx.send(loc["ext_notfound"].format(ext))
+        except commands.ExtensionAlreadyLoaded:
+            await ctx.send(loc["ext_alreadyloaded"].format(ext))
+        finally:
+            if ext not in config["loadPlugins"] and store == "-config":
+                config["loadPlugins"].append(ext)
+                dataIO.save_json("data/config.json", config)
+
+    @plugin.command(help="plugin_help", brief="plugin_brief")
+    @checks.bot_owner()
+    async def unload(self, ctx, ext, store=None):
+        try:
+            self.bot.unload_extension(ext)
+            await ctx.send(loc["ext_unloaded"].format(ext))
+        except commands.ExtensionNotFound:
+            await ctx.send(loc["ext_notfound"].format(ext))
+        except commands.ExtensionNotLoaded:
+            await ctx.send(loc["ext_notloaded"].format(ext))
+        finally:
+            if ext in config["loadPlugins"] and store == "-config":
+                config["loadPlugins"].remove(ext)
+                dataIO.save_json("data/config.json", config)
+
+    @commands.command(hidden=False, help="info_help", brief="info_brief")
     async def info(self, ctx):
         owner = self.bot.get_user(config["owner"])
         if owner is None:
@@ -30,22 +65,22 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
         embed.set_footer(text=config["name"])
         await ctx.send(embed=embed)
 
-    @commands.command(hidden=False, help="help_help", brief="help_brief")
-    async def help(self, ctx, query=None):
+    @commands.command(hidden=False, help="help_help", brief="help_brief", name="help")
+    async def _help(self, ctx, query=None):
         if query:
             if query.lower() == "all":
-                await h.send_help(self.bot, ctx)
+                await help.send_help(self.bot, ctx)
                 return
             for cog in self.bot.cogs:
                 if query.lower() == cog.lower():
-                    await h.send_plugin_help(ctx, self.bot.cogs[cog])
+                    await help.send_plugin_help(ctx, self.bot.cogs[cog])
                     return
             if any(c.name == query.lower() for c in self.bot.commands):
-                await h.send_cmd_help(ctx, self.bot.get_command(query.lower()))
+                await help.send_cmd_help(ctx, self.bot.get_command(query.lower()))
                 return
             await ctx.send(loc["help_not_found"])
         else:
-            await h.summary(self.bot, ctx)
+            await help.summary(self.bot, ctx)
 
 
 def setup(bot):
@@ -55,6 +90,5 @@ def setup(bot):
 
 def teardown(bot):
     import logging
-    logging.critical("Core module unloaded. The bot will now shutdown in order to prevent something bad to happen.")
-    bot.shutdown()
+    logging.critical("Core module unloaded. This might cause problems. Therefore, the bot will shutdown.")
     exit(-2)

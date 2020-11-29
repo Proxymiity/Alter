@@ -5,6 +5,10 @@
   "info_other_title" : "Autres informations",
   "info_other" : "Latence de la [Gateway](https://discord.com/developers/docs/topics/gateway) : `{0} ms`\nIdentifiant : `{1}`\nMessages en cache : `{2}`\nVersion de [discord.py](https://github.com/Rapptz/discord.py/) : `v{3}`",
   "info_unknown" : "Inconnu",
-  "help_not_found" : "L'élément recherché n'a pas été trouvée."
+  "ext_loaded" : "Le plugin `{0}` a été chargé avec succès",
+  "ext_unloaded" : "Le plugin `{0}` a été déchargé avec succès",
+  "ext_notfound" : "Le plugin `{0}` n'a pas été trouvé",
+  "ext_alreadyloaded" : "Le plugin `{0}` est déjà chargé",
+  "ext_notloaded" : "Le plugin `{0}` n'est pas chargé",
   "help_not_found" : "L'élément recherché n'a pas été trouvé."
 }
