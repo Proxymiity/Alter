@@ -23,15 +23,9 @@ async def on_ready():
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        if ctx.invoked_subcommand:
-            await help.send_cmd_help(ctx, ctx.invoked_subcommand, error=True)
-        else:
-            await help.send_cmd_help(ctx, ctx.command, error=True)
+        await help.send_cmd_help(ctx, ctx.command, error=True)
     elif isinstance(error, commands.BadArgument):
-        if ctx.invoked_subcommand:
-            await help.send_cmd_help(ctx, ctx.invoked_subcommand, error=True)
-        else:
-            await help.send_cmd_help(ctx, ctx.command, error=True)
+        await help.send_cmd_help(ctx, ctx.command, error=True)
     elif isinstance(error, commands.DisabledCommand):
         await ctx.send(loc["err_disabled"])
     elif isinstance(error, commands.CommandInvokeError):

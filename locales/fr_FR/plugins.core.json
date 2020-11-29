@@ -1,3 +1,9 @@
 {
-  "help_not_found" : "Le module ou la commande recherché(e) n'a pas été trouvée."
+  "info_about" : "A propos du bot",
+  "info_bot_title" : "Infos du bot",
+  "info_bot" : "Propriétaire : `{0}`\nUtilisateurs : `{1}`\nServeurs : `{2}`\nPréfixe : `{3}`\nModules : `{4}`",
+  "info_other_title" : "Autres informations",
+  "info_other" : "Latence de la [Gateway](https://discord.com/developers/docs/topics/gateway) : `{0} ms`\nIdentifiant : `{1}`\nMessages en cache : `{2}`\nVersion de [discord.py](https://github.com/Rapptz/discord.py/) : `v{3}`",
+  "info_unknown" : "Inconnu",
+  "help_not_found" : "L'élément recherché n'a pas été trouvée."
 }
