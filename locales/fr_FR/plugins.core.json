@@ -6,4 +6,5 @@
   "info_other" : "Latence de la [Gateway](https://discord.com/developers/docs/topics/gateway) : `{0} ms`\nIdentifiant : `{1}`\nMessages en cache : `{2}`\nVersion de [discord.py](https://github.com/Rapptz/discord.py/) : `v{3}`",
   "info_unknown" : "Inconnu",
   "help_not_found" : "L'élément recherché n'a pas été trouvée."
+  "help_not_found" : "L'élément recherché n'a pas été trouvé."
 }
