@@ -1,9 +1,6 @@
-![CodeQL](https://github.com/Proxymiity/Alter/workflows/CodeQL/badge.svg)  
+[![CodeQL](https://github.com/Proxymiity/Alter/workflows/CodeQL/badge.svg)](https://github.com/Proxymiity/Alter/actions?query=workflow%3ACodeQL)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Proxymiity_Alter&metric=alert_status)](https://sonarcloud.io/dashboard?id=Proxymiity_Alter)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Proxymiity_Alter&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=Proxymiity_Alter)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Proxymiity_Alter&metric=bugs)](https://sonarcloud.io/dashboard?id=Proxymiity_Alter)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Proxymiity_Alter&metric=code_smells)](https://sonarcloud.io/dashboard?id=Proxymiity_Alter)
-
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f657d4ee17004f8f9517ab5aee129c7d)](https://www.codacy.com/gh/Proxymiity/Alter/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Proxymiity/Alter&amp;utm_campaign=Badge_Grade)
 
 # Alter
 Alter Discord Bot

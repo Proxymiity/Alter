@@ -8,5 +8,8 @@
   "info_brief" : "Affiche des informations sur le bot",
   "info_help" : "Affiche la version du bot, le propriétaire, le nombre de serveurs, et d'autres informations",
   "plugin_brief" : "Gère le chargement des plugins",
-  "plugin_help" : "Permet de gérer l'état d'un plugin. Faites `{0}plugin load` pour charger un plugin, et `{0}plugin unload` pour décharger un plugin.\nPour le charger au démarrage, ajoutez `-config`, par exemple `{0}plugin load plugins.tools -config`"
+  "plugin_help" : "Permet de gérer l'état d'un plugin. \nPour charger le plugin au démarrage, ajoutez `-config`. Exemple : `{0}plugin load plugins.tools -config`",
+  "plugin_load_brief" : "Charge un plugin",
+  "plugin_unload_brief" : "Décharge un plugin",
+  "plugin_reload_brief" : "Recharge un plugin"
 }

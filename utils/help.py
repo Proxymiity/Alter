@@ -1,4 +1,5 @@
 import discord
+from discord.ext import commands as discord_commands
 from utils.dataIO import dataIO
 from utils import locale
 
@@ -50,6 +51,10 @@ async def send_cmd_help(ctx, cmd, error=False):
         embed.add_field(name=loc["help_title"], value=doc[cmd.help].format(prefix))
     embed.set_author(name=cmd.cog_name)
     await ctx.send(embed=embed)
+    if isinstance(cmd, discord_commands.Group):
+        embeds = _paginate(list(cmd.commands))
+        for to_send in embeds:
+            await ctx.send(embed=to_send)
 
 
 def _paginate(commands, embeds_input=None):
