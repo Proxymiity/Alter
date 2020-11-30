@@ -11,5 +11,6 @@
   "ext_notfound" : "Le plugin `{0}` n'a pas été trouvé",
   "ext_alreadyloaded" : "Le plugin `{0}` est déjà chargé",
   "ext_notloaded" : "Le plugin `{0}` n'est pas chargé",
-  "help_not_found" : "L'élément recherché n'a pas été trouvé."
+  "help_not_found" : "L'élément recherché n'a pas été trouvé.",
+  "shutdown" : "Arrêt du bot..."
 }

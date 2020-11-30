@@ -11,13 +11,27 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.command(help="shutdown_help", brief="shutdown_brief")
+    @checks.bot_owner()
+    async def shutdown(self, ctx, opt="normal"):
+        if "kill" in opt:
+            print("Bot shutdown seq. called with exit()")
+            exit(-1)
+        else:
+            print(loc["shutdown"])
+            await ctx.send(loc["shutdown"])
+            await self.bot.loop.stop()
+            await self.bot.loop.close()
+            await self.bot.logout()
+            exit(0)
+
     @commands.group(help="plugin_help", brief="plugin_brief")
     @checks.bot_owner()
     async def plugin(self, ctx):
         if ctx.invoked_subcommand is None:
             await help.send_cmd_help(ctx, ctx.command)
 
-    @plugin.command(help="plugin_help", brief="plugin_brief")
+    @plugin.command(brief="plugin_load_brief", hidden=False)
     @checks.bot_owner()
     async def load(self, ctx, ext, store=None):
         try:
@@ -32,20 +46,29 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
                 config["loadPlugins"].append(ext)
                 dataIO.save_json("data/config.json", config)
 
-    @plugin.command(help="plugin_help", brief="plugin_brief")
+    @plugin.command(brief="plugin_unload_brief", hidden=False)
     @checks.bot_owner()
     async def unload(self, ctx, ext, store=None):
         try:
             self.bot.unload_extension(ext)
             await ctx.send(loc["ext_unloaded"].format(ext))
-        except commands.ExtensionNotFound:
-            await ctx.send(loc["ext_notfound"].format(ext))
         except commands.ExtensionNotLoaded:
             await ctx.send(loc["ext_notloaded"].format(ext))
         finally:
             if ext in config["loadPlugins"] and store == "-config":
                 config["loadPlugins"].remove(ext)
                 dataIO.save_json("data/config.json", config)
+
+    @plugin.command(brief="plugin_reload_brief", hidden=False)
+    @checks.bot_owner()
+    async def reload(self, ctx, ext):
+        try:
+            self.bot.unload_extension(ext)
+            await ctx.send(loc["ext_reloaded"].format(ext))
+        except commands.ExtensionNotFound:
+            await ctx.send(loc["ext_notfound"].format(ext))
+        except commands.ExtensionNotLoaded:
+            await ctx.send(loc["ext_notloaded"].format(ext))
 
     @commands.command(hidden=False, help="info_help", brief="info_brief")
     async def info(self, ctx):
@@ -86,9 +109,3 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
 def setup(bot):
     plugin = Core(bot)
     bot.add_cog(plugin)
-
-
-def teardown(bot):
-    import logging
-    logging.critical("Core module unloaded. This might cause problems. Therefore, the bot will shutdown.")
-    exit(-2)

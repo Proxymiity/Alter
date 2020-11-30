@@ -11,5 +11,7 @@
   "plugin_help" : "Permet de gérer l'état d'un plugin. \nPour charger le plugin au démarrage, ajoutez `-config`. Exemple : `{0}plugin load plugins.tools -config`",
   "plugin_load_brief" : "Charge un plugin",
   "plugin_unload_brief" : "Décharge un plugin",
-  "plugin_reload_brief" : "Recharge un plugin"
+  "plugin_reload_brief" : "Recharge un plugin",
+  "shutdown_brief" : "Arrête le bot",
+  "shutdown_help" : "Arrête le bot. \nPour terminer le processus, faites `{0}shutdown kill`"
 }
