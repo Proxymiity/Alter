@@ -20,52 +20,20 @@ async def summary(bot, ctx):
     await ctx.send(embed=embed)
 
 
-async def send_help(bot, ctx, include=False):
+async def send_help(bot, ctx):
     embeds = []
     cogs = bot.cogs
     ordered_cogs = sorted(cogs)
     for cog in ordered_cogs:
         cmds = cogs[cog].get_commands()
-        cmds.sort(key=lambda c: c.name, reverse=False)
-        p = 0
-        n = 20
-        while p < len(cmds):
-            help_part = discord.Embed(title=cog, color=discord.Color.teal())
-            help_part.set_author(name=loc["help_all"])
-            for cmd in cmds[p:n]:
-                if cmd.hidden is True and include is False:
-                    pass
-                elif cmd.brief:
-                    help_part.add_field(name=cmd.name, value=doc[cmd.brief], inline=False)
-                else:
-                    help_part.add_field(name=cmd.name, value=loc["help_undef"], inline=True)
-                p = p+1
-            embeds.append(help_part)
-            n = n+20
+        embeds = _paginate(cmds, embeds)
     for to_send in embeds:
         await ctx.send(embed=to_send)
 
 
 async def send_plugin_help(ctx, cog):
-    embeds = []
-    cmds = cog.get_commands()
-    cmds.sort(key=lambda c: c.name, reverse=False)
-    p = 0
-    n = 20
-    while p < len(cmds):
-        help_part = discord.Embed(title=cog.qualified_name, color=discord.Color.teal(),
-                                  description=doc[cog.qualified_name.lower()])
-        help_part.set_author(name=loc["help_title"])
-        for cmd in cmds[p:n]:
-            if cmd.hidden is True:
-                pass
-            elif cmd.brief:
-                help_part.add_field(name=cmd.name, value=doc[cmd.brief], inline=False)
-            else:
-                help_part.add_field(name=cmd.name, value=loc["help_undef"], inline=True)
-            p = p+1
-        embeds.append(help_part)
-        n = n+20
+    commands = cog.get_commands()
+    embeds = _paginate(commands)
     for to_send in embeds:
         await ctx.send(embed=to_send)
 
@@ -82,3 +50,29 @@ async def send_cmd_help(ctx, cmd, error=False):
         embed.add_field(name=loc["help_title"], value=doc[cmd.help].format(prefix))
     embed.set_author(name=cmd.cog_name)
     await ctx.send(embed=embed)
+
+
+def _paginate(commands, embeds_input=None):
+    if embeds_input is None:
+        embeds_input = []
+    command_list = commands
+    cmds = command_list.copy()
+    for command in command_list:
+        if command.hidden is True:
+            cmds.remove(command)
+    cmds.sort(key=lambda c: c.name, reverse=False)
+    p = 0
+    n = 25
+    while p < len(cmds):
+        help_part = discord.Embed(title=cmds[0].cog.qualified_name, color=discord.Color.teal(),
+                                  description=doc[cmds[0].cog.qualified_name.lower()])
+        help_part.set_author(name=loc["help_title"])
+        for x in cmds[p:n]:
+            if x.brief:
+                help_part.add_field(name=x.name, value=doc[x.brief], inline=False)
+            else:
+                help_part.add_field(name=x.name, value=loc["help_undef"], inline=True)
+            p = p + 1
+        embeds_input.append(help_part)
+        n = n + 25
+    return embeds_input
