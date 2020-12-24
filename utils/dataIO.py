@@ -1,13 +1,9 @@
 import json
 import os
-import logging
 from random import randint
 
 
 class DataIO:
-    def __init__(self):
-        self.logger = logging.getLogger("red")
-
     def save_json(self, filename, data):
         rnd = randint(1000, 9999)
         path, ext = os.path.splitext(filename)
@@ -16,10 +12,7 @@ class DataIO:
         try:
             self._read_json(tmp_file)
         except json.decoder.JSONDecodeError:
-            self.logger.exception("Attempted to write file {} but JSON "
-                                  "integrity check on tmp file has failed. "
-                                  "The original file is unaltered."
-                                  "".format(filename))
+            print("JSON integrity check on temp file for {} has failed. Original file unaltered.".format(filename))
             return False
         os.replace(tmp_file, filename)
         return True
