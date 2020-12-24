@@ -6,7 +6,6 @@
     "token" : "",
     "owner" : 0,
     "loadPlugins" : [
-        "plugins.core",
-        "plugins.test"
+        "plugins.core"
     ]
 }
