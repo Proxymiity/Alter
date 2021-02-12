@@ -63,7 +63,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     @checks.bot_owner()
     async def reload(self, ctx, ext):
         try:
-            self.bot.unload_extension(ext)
+            self.bot.reload_extension(ext)
             await ctx.send(loc["ext_reloaded"].format(ext))
         except commands.ExtensionNotFound:
             await ctx.send(loc["ext_notfound"].format(ext))
