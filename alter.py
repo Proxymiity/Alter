@@ -53,5 +53,3 @@ async def on_command_error(ctx, error):
 
 print(loc["logging_in"].format(token[0:5]))
 bot.run(token)
-print(loc["logged_out"])
-exit(0)

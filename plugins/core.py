@@ -23,6 +23,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             await self.bot.loop.stop()
             await self.bot.loop.close()
             await self.bot.logout()
+            exit(0)
 
     @commands.group(help="plugin_help", brief="plugin_brief")
     @checks.bot_owner()
