@@ -13,5 +13,7 @@
   "plugin_unload_brief" : "Décharge un plugin",
   "plugin_reload_brief" : "Recharge un plugin",
   "shutdown_brief" : "Arrête le bot",
-  "shutdown_help" : "Arrête le bot. \nPour terminer le processus, faites `{0}shutdown kill`"
+  "shutdown_help" : "Arrête le bot. \nPour terminer le processus, faites `{0}shutdown kill`",
+  "ban_brief" : "Bannir un utilisateur",
+  "ban_help" : "Bannit un utilisateur du serveur, l'empêchant de rejoindre tant qu'il n'est pas débanni."
 }
