@@ -1,7 +1,7 @@
 {
   "none" : ":tools:",
   "core" : "Commandes principales du bot (aide, ping, etc.)",
-  "test" : "Module de test",
+  "moderation" : "Commandes pour la modération (ban, idban, etc.)",
 
   "help_brief" : "Affiche les commandes disponibles",
   "help_help" : "Affiche toutes les commandes disponibles. Par défaut, affiche la liste des modules.\nVous pouvez obtenir l'aide sur une commande précise avec `{0}help [commande]`, l'aide sur un module avec `{0}help [module]` et toutes les commandes avec `{0}help all`",
