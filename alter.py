@@ -8,7 +8,7 @@ config = dataIO.load_json("data/config.json")
 token = config["token"]
 prefix = config["prefix"]
 loc = locale.load(config["locale"], "alter")
-bot = commands.Bot(prefix)
+bot = commands.Bot(prefix, intents=discord.Intents.all())
 
 
 @bot.event
