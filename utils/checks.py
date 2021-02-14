@@ -35,5 +35,8 @@ def server_perms(ctx, perms):
     channel = ctx.message.channel
     author = ctx.message.author
     resolved = channel.permissions_for(author)
-    return all(getattr(resolved, name, None) == value for name, value in perms.item())
+    try:
+        return all(getattr(resolved, name, None) == value for name, value in perms.item())
+    except AttributeError:
+        return False
     # https://gitlab.com/Proxymiity/proxybot/-/blob/master/releases/8.0.6/cogs/utils/checks.py
