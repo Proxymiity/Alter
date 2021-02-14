@@ -1,8 +1,7 @@
 import discord
-from discord import utils
 from discord.ext import commands
 from utils.dataIO import dataIO
-from utils import locale, checks, help
+from utils import locale, checks
 
 config = dataIO.load_json("data/config.json")
 loc = locale.load(config["locale"], "plugins.moderation")
