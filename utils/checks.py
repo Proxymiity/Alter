@@ -25,6 +25,12 @@ def server_owner_raw(ctx):
         return False
 
 
+def permission(perms):
+    def check(ctx):
+        return server_perms(ctx, perms)
+    return commands.check(check)
+
+
 def server_perms(ctx, perms):
     if bot_owner_raw(ctx):
         return True
