@@ -12,6 +12,7 @@ class Moderation(commands.Cog):
         self.bot = bot
 
     @checks.permission(discord.Permissions.ban_members)
+    @commands.guild_only()
     @commands.command(help="ban_help", brief="ban_brief")
     async def ban(self, ctx, user: discord.User, *, reason=None):
         if user == ctx.me or user == ctx.author or user == ctx.guild.owner:
@@ -27,12 +28,13 @@ class Moderation(commands.Cog):
             return
         try:
             await member.send(loc["ban_dm"].format(ctx.guild.name, reason))
-        except discord.Forbidden:
+        except discord.Forbidden or discord.errors.HTTPException:
             await ctx.send(loc["dm_error"])
         await member.ban(reason=reason)
         await ctx.send(loc["ban_success"].format(member.name, reason))
 
     @checks.permission(discord.Permissions.kick_members)
+    @commands.guild_only()
     @commands.command(help="kick_help", brief="kick_brief")
     async def kick(self, ctx, user: discord.User, *, reason=None):
         if user == ctx.me or user == ctx.author or user == ctx.guild.owner:
@@ -48,12 +50,13 @@ class Moderation(commands.Cog):
             return
         try:
             await member.send(loc["kick_dm"].format(ctx.guild.name, reason))
-        except discord.Forbidden:
+        except discord.Forbidden or discord.errors.HTTPException:
             await ctx.send(loc["dm_error"])
         await member.kick(reason=reason)
         await ctx.send(loc["kick_success"].format(member.name, reason))
 
     @checks.permission(discord.Permissions.kick_members)
+    @commands.guild_only()
     @commands.command(help="idban_help", brief="idban_brief")
     async def idban(self, ctx, user: int, *, reason=None):
         try:
