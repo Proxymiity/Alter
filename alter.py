@@ -22,12 +22,18 @@ async def on_ready():
 
 @bot.event
 async def on_command_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):
+    if isinstance(error, commands.NoPrivateMessage):
+        await ctx.send(loc["err_pm"])
+    elif isinstance(error, commands.PrivateMessageOnly):
+        await ctx.send(loc["err_pm_only"])
+    elif isinstance(error, commands.DisabledCommand):
+        await ctx.send(loc["err_disabled"])
+    elif isinstance(error, commands.CommandOnCooldown):
+        await ctx.send(loc["err_cd"].format(error.retry_after))
+    elif isinstance(error, commands.MissingRequiredArgument):
         await help.send_cmd_help(ctx, ctx.command, error=True)
     elif isinstance(error, commands.BadArgument):
         await help.send_cmd_help(ctx, ctx.command, error=True)
-    elif isinstance(error, commands.DisabledCommand):
-        await ctx.send(loc["err_disabled"])
     elif isinstance(error, commands.CommandInvokeError):
         if isinstance(error.original, discord.Forbidden):
             await ctx.send(loc["err_missing_perm"])
@@ -41,10 +47,6 @@ async def on_command_error(ctx, error):
         pass
     elif isinstance(error, commands.CheckFailure):
         pass
-    elif isinstance(error, commands.NoPrivateMessage):
-        await ctx.send(loc["err_pm"])
-    elif isinstance(error, commands.CommandOnCooldown):
-        await ctx.send(loc["err_cd"].format(error.retry_after))
     else:
         print("Uncaught exception {}".format(error))
         dataIO.save_json("error.json", [error])
