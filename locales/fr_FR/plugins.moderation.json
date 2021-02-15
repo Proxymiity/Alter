@@ -3,5 +3,6 @@
   "ban_reason_empty" : "Banni par {0}",
   "ban_failed_dm" : "L'envoi d'un message à l'utilisateur a échoué.",
   "ban_success" : "L'utilisateur {0} a été banni.\nRaison: `{1}`",
+  "ban_dm" : "Vous avez été banni du serveur {0}\nRaison: `{1}`",
   "target_error" : "Impossible d'exécuter cette action sur cet utilisateur."
 }

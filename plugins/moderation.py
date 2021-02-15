@@ -23,7 +23,7 @@ class Moderation(commands.Cog):
             reason = loc["ban_reason_empty"].format(ctx.author.name)
         member = ctx.guild.get_member(user.id)
         try:
-            await member.send("")  # todo: https://github.com/Proxymiity/Alter/projects/2#card-54896806
+            await member.send(loc["ban_dm"].format(ctx.guild.name, reason))
         except discord.Forbidden:
             pass
         await member.ban(reason=reason)
