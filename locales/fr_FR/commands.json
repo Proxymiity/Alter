@@ -15,7 +15,11 @@
   "shutdown_brief" : "Arrête le bot",
   "shutdown_help" : "Arrête le bot. \nPour terminer le processus, faites `{0}shutdown kill`",
   "ban_brief" : "Bannir un utilisateur",
-  "ban_help" : "Bannit un utilisateur du serveur, l'empêchant de rejoindre tant qu'il n'est pas débanni.",
+  "ban_help" : "Bannit un utilisateur du serveur, l'empêchant de rejoindre tant qu'il n'est pas débanni.\nIl est possible de spécifier une raison.",
   "kick_brief" : "Éjecter un utilisateur",
-  "kick_help" : "Éjecte un utilisateur du serveur, lui permettant de revenir avec une invitation."
+  "kick_help" : "Éjecte un utilisateur du serveur, lui permettant de revenir avec une invitation.\nIl est possible de spécifier une raison.",
+  "idban_brief" : "Banir un utilisateur via son identifiant",
+  "idban_help" : "Bannit un utilisateur du serveur en spécifiant son identifiant.\nIl est possible de spécifier une raison",
+  "unban_brief" : "Débannir un utilisateur",
+  "unban_help" : "Débannit un utilisateur du serveur"
 }
