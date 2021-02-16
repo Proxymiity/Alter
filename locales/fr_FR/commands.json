@@ -1,7 +1,7 @@
 {
   "none" : ":tools:",
   "core" : "Commandes principales du bot (aide, ping, etc.)",
-  "test" : "Module de test",
+  "moderation" : "Commandes pour la modération (ban, idban, etc.)",
 
   "help_brief" : "Affiche les commandes disponibles",
   "help_help" : "Affiche toutes les commandes disponibles. Par défaut, affiche la liste des modules.\nVous pouvez obtenir l'aide sur une commande précise avec `{0}help [commande]`, l'aide sur un module avec `{0}help [module]` et toutes les commandes avec `{0}help all`",
@@ -13,5 +13,13 @@
   "plugin_unload_brief" : "Décharge un plugin",
   "plugin_reload_brief" : "Recharge un plugin",
   "shutdown_brief" : "Arrête le bot",
-  "shutdown_help" : "Arrête le bot. \nPour terminer le processus, faites `{0}shutdown kill`"
+  "shutdown_help" : "Arrête le bot. \nPour terminer le processus, faites `{0}shutdown kill`",
+  "ban_brief" : "Bannir un utilisateur",
+  "ban_help" : "Bannit un utilisateur du serveur, l'empêchant de rejoindre tant qu'il n'est pas débanni.\nIl est possible de spécifier une raison.",
+  "kick_brief" : "Éjecter un utilisateur",
+  "kick_help" : "Éjecte un utilisateur du serveur, lui permettant de revenir avec une invitation.\nIl est possible de spécifier une raison.",
+  "idban_brief" : "Banir un utilisateur via son identifiant",
+  "idban_help" : "Bannit un utilisateur du serveur en spécifiant son identifiant.\nIl est possible de spécifier une raison",
+  "unban_brief" : "Débannir un utilisateur",
+  "unban_help" : "Débannit un utilisateur du serveur"
 }
