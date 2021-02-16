@@ -80,6 +80,26 @@ class Moderation(commands.Cog):
                     member = x.user
             await ctx.send(loc["ban_success"].format(member.name, reason))
 
+    @checks.permission(discord.Permissions.ban_members)
+    @commands.guild_only()
+    @commands.command(help="unban_help", brief="unban_brief")
+    async def unban(self, ctx, user):
+        for x in await ctx.guild.bans():
+            if x.user.name == user:
+                await ctx.guild.unban(x.user)
+                await ctx.send(loc["unban_success"].format(x.user.name))
+                return
+            try:
+                user = int(user)
+            except ValueError:
+                await ctx.send(loc["user_notfound"])
+                return
+            if x.user.id == user:
+                await ctx.guild.unban(x.user)
+                await ctx.send(loc["unban_success"].format(x.user.name))
+                return
+        await ctx.send(loc["user_notfound"])
+
 
 def setup(bot):
     plugin = Moderation(bot)

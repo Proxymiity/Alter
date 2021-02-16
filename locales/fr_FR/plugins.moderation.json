@@ -7,6 +7,7 @@
   "kick_reason_empty" : "Kick par {0}",
   "kick_success" : "L'utilisateur {0} a été éjecté.\nRaison: `{1}`",
   "kick_dm" : "Vous avez été éjecté du serveur {0}\nRaison: `{1}`",
+  "unban_success" : "L'utilisateur {0} a été débanni.",
   "idban_is_member" : "L'utilisateur est dans ce serveur ({0}). Utilisez `{1}ban` en mentionnant l'utilisateur.\n*Astuce: Vous pouvez mentionner cet utilisateur en faisnt `<@{2}>`*",
   "target_error" : "Impossible d'exécuter cette action sur cet utilisateur.",
   "dm_error" : "L'envoi d'un message à l'utilisateur a échoué.",
