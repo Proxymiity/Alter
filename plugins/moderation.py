@@ -28,7 +28,7 @@ class Moderation(commands.Cog):
             return
         try:
             await member.send(loc["ban_dm"].format(ctx.guild.name, reason))
-        except discord.Forbidden or discord.errors.HTTPException:
+        except (discord.Forbidden, discord.errors.HTTPException):
             await ctx.send(loc["dm_error"])
         await member.ban(reason=reason)
         await ctx.send(loc["ban_success"].format(member.name, reason))
@@ -50,7 +50,7 @@ class Moderation(commands.Cog):
             return
         try:
             await member.send(loc["kick_dm"].format(ctx.guild.name, reason))
-        except discord.Forbidden or discord.errors.HTTPException:
+        except (discord.Forbidden, discord.errors.HTTPException):
             await ctx.send(loc["dm_error"])
         await member.kick(reason=reason)
         await ctx.send(loc["kick_success"].format(member.name, reason))
@@ -72,7 +72,7 @@ class Moderation(commands.Cog):
             reason = loc["ban_reason_empty"].format(ctx.author.name)
         try:
             await self.bot.http.ban(user, ctx.guild.id, reason=reason)
-        except discord.errors.HTTPException or discord.errors.NotFound:
+        except (discord.Forbidden, discord.errors.HTTPException):
             await ctx.send(loc["user_notfound"])
         else:
             for x in await ctx.guild.bans():
