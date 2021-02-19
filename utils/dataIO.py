@@ -40,5 +40,11 @@ class DataIO:
                       separators=(',', ' : '))
         return data
 
+    def export_json(self, data):
+        return json.dumps(data)
+
+    def import_json(self, data):
+        return json.loads(data)
+
 
 dataIO = DataIO()

@@ -48,7 +48,7 @@ def read(table: str, sid: int, name: str):
         return None
     else:
         try:
-            return d_data[sanitize(name)]
+            return d_data[name]
         except KeyError:
             return None
 
@@ -57,7 +57,7 @@ def write(table: str, sid: int, name: str, value: str):
     table = sanitize(table)
     d_rel = "/" + table + "/" + str(sid) + fe
     d_data = load_file(db_path + d_rel) or {}
-    d_data[sanitize(name)] = sanitize(value)
+    d_data[name] = value
     dataIO.save_json(db_path + d_rel, d_data)
 
 
@@ -67,5 +67,5 @@ def delete(table: str, sid: int, name: str):
     d_data = load_file(db_path + d_rel)
     if d_data is None:
         return
-    d_data[sanitize(name)] = None
+    d_data[name] = None
     dataIO.save_json(db_path + d_rel, d_data)
