@@ -8,5 +8,6 @@
     "loadPlugins" : [
         "plugins.core",
         "plugins.moderation"
-    ]
+    ],
+    "storage": "db.sqlited"
 }
