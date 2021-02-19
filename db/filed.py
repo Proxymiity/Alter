@@ -3,6 +3,7 @@ import shutil
 from pathlib import Path
 from utils.dataIO import dataIO
 
+fe = ".json"
 db_path = dataIO.load_json("data/file.config.json")["path"]
 path = Path(os.getcwd() + "/" + db_path)
 
@@ -41,7 +42,7 @@ def delete_table(name: str):
 
 def read(table: str, sid: int, name: str):
     table = sanitize(table)
-    d_rel = "/" + table + "/" + str(sid) + ".json"
+    d_rel = "/" + table + "/" + str(sid) + fe
     d_data = load_file(db_path + d_rel)
     if d_data is None:
         return None
@@ -54,7 +55,7 @@ def read(table: str, sid: int, name: str):
 
 def write(table: str, sid: int, name: str, value: str):
     table = sanitize(table)
-    d_rel = "/" + table + "/" + str(sid) + ".json"
+    d_rel = "/" + table + "/" + str(sid) + fe
     d_data = load_file(db_path + d_rel) or {}
     d_data[sanitize(name)] = sanitize(value)
     dataIO.save_json(db_path + d_rel, d_data)
@@ -62,7 +63,7 @@ def write(table: str, sid: int, name: str, value: str):
 
 def delete(table: str, sid: int, name: str):
     table = sanitize(table)
-    d_rel = "/" + table + "/" + str(sid) + ".json"
+    d_rel = "/" + table + "/" + str(sid) + fe
     d_data = load_file(db_path + d_rel)
     if d_data is None:
         return
