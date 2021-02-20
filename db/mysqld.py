@@ -13,7 +13,7 @@ def sanitize(val):
 
 def create_table(name: str):
     name = sanitize(name)
-    dbc.execute("CREATE TABLE IF NOT EXISTS {}(sid INTEGER, name TEXT, value TEXT)".format(name))
+    dbc.execute("CREATE TABLE IF NOT EXISTS {}(sid BIGINT UNSIGNED, name TEXT, value TEXT)".format(name))
 
 
 def delete_table(name: str):

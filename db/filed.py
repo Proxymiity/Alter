@@ -67,5 +67,5 @@ def delete(table: str, sid: int, name: str):
     d_data = load_file(db_path + d_rel)
     if d_data is None:
         return
-    d_data[name] = None
+    d_data.pop(name)
     dataIO.save_json(db_path + d_rel, d_data)
