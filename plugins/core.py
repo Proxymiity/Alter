@@ -1,10 +1,13 @@
 import discord
 from discord.ext import commands
 from utils.dataIO import dataIO
-from utils import locale, checks, help
+from utils import checks, help
+from utils import locale as loc
+from importlib import import_module
 
 config = dataIO.load_json("data/config.json")
-loc = locale.load(config["locale"], "plugins.core")
+mn = "plugins.core"
+db = import_module(config["storage"])
 
 
 class Core(commands.Cog, command_attrs=dict(hidden=True)):
@@ -18,8 +21,8 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             print("Bot shutdown seq. called with exit()")
             exit(-1)
         else:
-            print(loc["shutdown"])
-            await ctx.send(loc["shutdown"])
+            print(loc.get(ctx, db, mn, "shutdown"))
+            await ctx.send(loc.get(ctx, db, mn, "shutdown"))
             await self.bot.logout()
 
     @commands.group(help="plugin_help", brief="plugin_brief")
@@ -33,11 +36,11 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     async def load(self, ctx, ext, store=None):
         try:
             self.bot.load_extension(ext)
-            await ctx.send(loc["ext_loaded"].format(ext))
+            await ctx.send(loc.get(ctx, db, mn, "ext_loaded").format(ext))
         except commands.ExtensionNotFound:
-            await ctx.send(loc["ext_notfound"].format(ext))
+            await ctx.send(loc.get(ctx, db, mn, "ext_notfound").format(ext))
         except commands.ExtensionAlreadyLoaded:
-            await ctx.send(loc["ext_alreadyloaded"].format(ext))
+            await ctx.send(loc.get(ctx, db, mn, "ext_alreadyloaded").format(ext))
         finally:
             if ext not in config["loadPlugins"] and store == "-config":
                 config["loadPlugins"].append(ext)
@@ -48,9 +51,9 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     async def unload(self, ctx, ext, store=None):
         try:
             self.bot.unload_extension(ext)
-            await ctx.send(loc["ext_unloaded"].format(ext))
+            await ctx.send(loc.get(ctx, db, mn, "ext_unloaded").format(ext))
         except commands.ExtensionNotLoaded:
-            await ctx.send(loc["ext_notloaded"].format(ext))
+            await ctx.send(loc.get(ctx, db, mn, "ext_notloaded").format(ext))
         finally:
             if ext in config["loadPlugins"] and store == "-config":
                 config["loadPlugins"].remove(ext)
@@ -61,27 +64,29 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     async def reload(self, ctx, ext):
         try:
             self.bot.reload_extension(ext)
-            await ctx.send(loc["ext_reloaded"].format(ext))
+            await ctx.send(loc.get(ctx, db, mn, "ext_reloaded").format(ext))
         except commands.ExtensionNotFound:
-            await ctx.send(loc["ext_notfound"].format(ext))
+            await ctx.send(loc.get(ctx, db, mn, "ext_notfound").format(ext))
         except commands.ExtensionNotLoaded:
-            await ctx.send(loc["ext_notloaded"].format(ext))
+            await ctx.send(loc.get(ctx, db, mn, "ext_notloaded").format(ext))
 
     @commands.command(hidden=False, help="info_help", brief="info_brief")
     async def info(self, ctx):
         owner = self.bot.get_user(config["owner"])
         if owner is None:
-            owner = loc["info_unknown"]
-        ping = int(self.bot.latency*1000)
-        embed = discord.Embed(title=loc["info_about"], color=discord.Color.teal())
+            owner = loc.get(ctx, db, mn, "info_unknown")
+        ping = int(self.bot.latency * 1000)
+        embed = discord.Embed(title=loc.get(ctx, db, mn, "info_about"), color=discord.Color.teal())
         bot = self.bot.user
         embed.set_author(name=bot.name, icon_url=str(bot.avatar_url))
-        embed.add_field(name=loc["info_bot_title"], value=loc["info_bot"].format(owner, len(self.bot.users),
-                                                                                 len(self.bot.guilds), config["prefix"],
-                                                                                 len(self.bot.cogs)), inline=True)
-        embed.add_field(name=loc["info_other_title"], value=loc["info_other"].format(ping, self.bot.user.id,
-                                                                                     len(self.bot.cached_messages),
-                                                                                     discord.__version__), inline=True)
+        embed.add_field(name=loc.get(ctx, db, mn, "info_bot_title"),
+                        value=loc.get(ctx, db, mn, "info_bot").format(owner, len(self.bot.users),
+                                                                      len(self.bot.guilds), config["prefix"],
+                                                                      len(self.bot.cogs)), inline=True)
+        embed.add_field(name=loc.get(ctx, db, mn, "info_other_title"),
+                        value=loc.get(ctx, db, mn, "info_other").format(ping, self.bot.user.id,
+                                                                        len(self.bot.cached_messages),
+                                                                        discord.__version__), inline=True)
         embed.set_footer(text=config["name"])
         await ctx.send(embed=embed)
 
@@ -98,7 +103,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             if any(c.name == query.lower() for c in self.bot.commands):
                 await help.send_cmd_help(ctx, self.bot.get_command(query.lower()))
                 return
-            await ctx.send(loc["help_not_found"])
+            await ctx.send(loc.get(ctx, db, mn, "help_not_found"))
         else:
             await help.summary(self.bot, ctx)
 
