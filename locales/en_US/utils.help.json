@@ -1,0 +1,10 @@
+{
+  "help_title" : "Help",
+  "help_desc" : "Do {0}help [command/module] to get more info.",
+  "help_all" : "All commands",
+  "help_undef" : ":tools:",
+  "modules_all" : "All modules",
+  "about_bot" : "`{0}` is a multi-purpose bot [open-sourced on GitHub](https://github.com/Proxymiity/Alter).",
+  "help_how" : "Commands starts with `{0}`.\nUse the `help` command to get help on a module or command. Example: `{0}help moderation` will show moderation commands.",
+  "arg_error" : "Error: One or more argument(s) are invalid. Please try again."
+}
