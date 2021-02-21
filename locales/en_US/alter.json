@@ -1,0 +1,12 @@
+{
+  "logging_in" : "Logging in with token {0}...",
+  "logged_in_as" : "Logged in as {0}.",
+  "loading_ext" : "Loading extension {0}",
+  "err_uncaught" : "An uncaught error has occurred. This error has been displayed in the console.",
+  "err_exec" :  "An error occurred while executing this command. Error: `{0}`",
+  "err_disabled" : "This command has been temporarily disabled.",
+  "err_missing_perm" : "An error occurred while checking permissions. Ensure that the bot has all the necessary permissions.",
+  "err_pm" : "This command cannot be used in DM.",
+  "err_pm_only" : "This command cannot be used in a server.",
+  "err_cd" : "This command cannot be used yet. Try again in {0:.0f} seconds."
+}

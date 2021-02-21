@@ -1,0 +1,25 @@
+{
+  "none" : ":tools:",
+  "core" : "Main bot commands (help, ping, etc.)",
+  "moderation" : "Moderation commands (ban, idban, etc.)",
+
+  "help_brief" : "Show available commands",
+  "help_help" : "Show every available command. By default, this shows the list of modules.\nYou can get help on a specific command with `{0}help [command]`, help on a module with `{0}help [module]` and all commands with `{0}help all`",
+  "info_brief" : "Shows information about the bot",
+  "info_help" : "Shows the bot's version, its owner, the number of servers, and other information.",
+  "plugin_brief" : "Manages plugins states",
+  "plugin_help" : "Manage the loaded state of a plugin. \nTo load the plugin on boot, add `-config`. Example: `{0}plugin load plugins.tools -config`",
+  "plugin_load_brief" : "Loads a plugin",
+  "plugin_unload_brief" : "Unloads a plugin",
+  "plugin_reload_brief" : "Reloads a plugin",
+  "shutdown_brief" : "Shutdowns the bot",
+  "shutdown_help" : "Shutdowns the bot. \nTo kill the process, use `{0}shutdown kill`",
+  "ban_brief" : "Bans an user",
+  "ban_help" : "Ban an user from the server, preventing it from joining again until it is unbanned.\nThe reason is optional.",
+  "kick_brief" : "Ejects an user",
+  "kick_help" : "Eject an user from the server, allowing it to join again with an invite link.\nThe reason is optional.",
+  "idban_brief" : "Bans an user via its ID",
+  "idban_help" : "Ban an user from the server with its Discord ID.\nThe reason is optional.",
+  "unban_brief" : "Unbans an user",
+  "unban_help" : "Unban an user from the server"
+}
