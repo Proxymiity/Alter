@@ -1,11 +1,10 @@
 from utils.dataIO import dataIO
 import os
-dl = dataIO.load_json("data/config.json")["locale"]
 
 
 def get(ctx, db, mod, key):
     if ctx.guild:
-        loc = db.read("server_settings", ctx.guild.id, "locale") or dl
+        loc = db.read("server_settings", ctx.guild.id, "locale") or db.read("settings", 0, "locale")
     else:
         loc = db.read("settings", 0, "locale")
     return load(loc, mod, key)
