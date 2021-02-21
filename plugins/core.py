@@ -6,8 +6,8 @@ from utils import locale as loc
 from importlib import import_module
 
 config = dataIO.load_json("data/config.json")
-mn = "plugins.core"
 db = import_module(config["storage"])
+mn = "plugins.core"
 
 
 class Core(commands.Cog, command_attrs=dict(hidden=True)):

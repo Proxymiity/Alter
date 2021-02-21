@@ -5,9 +5,9 @@ from utils import locale as loc
 from importlib import import_module
 
 config = dataIO.load_json("data/config.json")
+db = import_module(config["storage"])
 mn = "utils.help"
 dn = "commands"
-db = import_module(config["storage"])
 prefix = config["prefix"]
 
 
