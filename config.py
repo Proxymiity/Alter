@@ -11,6 +11,7 @@ if len(args) == 1:
     print("- ./{} <file> <key> <value>: set config for a specific key".format(args[0]))
     print("Example: ./{} config owner 481038581032403850".format(args[0]))
     print("To set value lists please edit the config manually (there isn't that much lists)")
+    exit(0)
 
 try:
     config = dataIO.load_json("data/" + str(args[1]) + ".json")
