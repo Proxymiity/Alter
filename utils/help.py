@@ -8,7 +8,6 @@ config = dataIO.load_json("data/config.json")
 mn = "utils.help"
 dn = "commands"
 db = import_module(config["storage"])
-db.create_table("serversettings")
 prefix = config["prefix"]
 
 

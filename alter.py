@@ -9,6 +9,8 @@ config = dataIO.load_json("data/config.json")
 mn = "alter"
 dl = config["locale"]
 db = import_module(config["storage"])
+db.create_table("serversettings")
+db.create_table("settings")
 token = config["token"]
 prefix = config["prefix"]
 bot = commands.Bot(prefix, intents=discord.Intents.all())
