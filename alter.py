@@ -1,16 +1,15 @@
 import discord
 from discord.ext import commands
 from utils.dataIO import dataIO
+from utils import defaults; defaults.check()
 from utils import locale as loc
 from utils import help
 from importlib import import_module
 
 config = dataIO.load_json("data/config.json")
+db = import_module(config["storage"])
 mn = "alter"
 dl = config["locale"]
-db = import_module(config["storage"])
-db.create_table("serversettings")
-db.create_table("settings")
 token = config["token"]
 prefix = config["prefix"]
 bot = commands.Bot(prefix, intents=discord.Intents.all())
