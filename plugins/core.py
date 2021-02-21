@@ -81,13 +81,14 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
         embed.set_author(name=bot.name, icon_url=str(bot.avatar_url))
         embed.add_field(name=loc.get(ctx, db, mn, "info_bot_title"),
                         value=loc.get(ctx, db, mn, "info_bot").format(owner, len(self.bot.users),
-                                                                      len(self.bot.guilds), config["prefix"],
+                                                                      len(self.bot.guilds),
+                                                                      db.read("settings", 0, "prefix"),
                                                                       len(self.bot.cogs)), inline=True)
         embed.add_field(name=loc.get(ctx, db, mn, "info_other_title"),
                         value=loc.get(ctx, db, mn, "info_other").format(ping, self.bot.user.id,
                                                                         len(self.bot.cached_messages),
                                                                         discord.__version__), inline=True)
-        embed.set_footer(text=config["name"])
+        embed.set_footer(text=db.read("settings", 0, "name"))
         await ctx.send(embed=embed)
 
     @commands.command(hidden=False, help="help_help", brief="help_brief", name="help")

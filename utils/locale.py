@@ -7,7 +7,7 @@ def get(ctx, db, mod, key):
     if ctx.guild:
         loc = db.read("server_settings", ctx.guild.id, "locale") or dl
     else:
-        loc = dl
+        loc = db.read("settings", 0, "locale")
     return load(loc, mod, key)
 
 

@@ -9,9 +9,9 @@ from importlib import import_module
 config = dataIO.load_json("data/config.json")
 db = import_module(config["storage"])
 mn = "alter"
-dl = config["locale"]
+dl = db.read("settings", 0, "locale")
 token = config["token"]
-prefix = config["prefix"]
+prefix = db.read("settings", 0, "prefix")
 bot = commands.Bot(prefix, intents=discord.Intents.all())
 
 

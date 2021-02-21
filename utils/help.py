@@ -8,7 +8,7 @@ config = dataIO.load_json("data/config.json")
 db = import_module(config["storage"])
 mn = "utils.help"
 dn = "commands"
-prefix = config["prefix"]
+prefix = db.read("settings", 0, "prefix")
 
 
 async def summary(bot, ctx):
@@ -17,7 +17,7 @@ async def summary(bot, ctx):
     for cog in cogs:
         cl = cl + "`{}` {}\n".format(cog, loc.get(ctx, db, dn, cog.lower()))
     embed = discord.Embed(title=loc.get(ctx, db, mn, "help_title"),
-                          description=loc.get(ctx, db, mn, "about_bot").format(config["name"]),
+                          description=loc.get(ctx, db, mn, "about_bot").format(db.read("settings", 0, "name")),
                           color=discord.Color.teal())
     embed.add_field(name=loc.get(ctx, db, mn, "help_title"), value=loc.get(ctx, db, mn, "help_how").format(prefix),
                     inline=False)
