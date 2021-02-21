@@ -48,6 +48,6 @@ if len(args) > 3:
     else:
         value = " ".join(args[3:])
         config[args[2]] = value
-    dataIO.save_json(str(args[1]), config)
+    dataIO.save_json(str("data/" + str(args[1]) + ".json"), config)
     print("Successfully set and saved value.")
     exit(0)
