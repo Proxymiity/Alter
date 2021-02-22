@@ -6,6 +6,7 @@ from utils import locale as loc
 from importlib import import_module
 
 config = dataIO.load_json("data/config.json")
+locales = dataIO.load_json("locales/locales.json")
 db = import_module(config["storage"])
 mn = "plugins.core"
 
@@ -107,6 +108,21 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             await ctx.send(loc.get(ctx, db, mn, "help_not_found"))
         else:
             await help.summary(self.bot, ctx)
+
+    @commands.guild_only()
+    @commands.command(hidden=False, help="lang_help", brief="lang_brief")
+    async def lang(self, ctx, lang=None):
+        if lang:
+            if lang in locales:
+                db.write("server_settings", ctx.guild.id, "locale", lang)
+                ctx.send(loc.get(ctx, db, mn, "lang_changed").format(locales[lang]))
+            else:
+                ctx.send(loc.get(ctx, db, mn, "lang_not_found"))
+        else:
+            lc = []
+            for x in locales:
+                lc.append("`" + x + "` " + locales[x])
+            await ctx.send(loc.get(ctx, db, mn, "lang_list").format("\n".join(lc)))
 
 
 def setup(bot):

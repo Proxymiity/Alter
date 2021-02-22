@@ -12,5 +12,8 @@
   "ext_alreadyloaded" : "Le plugin `{0}` est déjà chargé",
   "ext_notloaded" : "Le plugin `{0}` n'est pas chargé",
   "help_not_found" : "L'élément recherché n'a pas été trouvé.",
-  "shutdown" : "Arrêt du bot..."
+  "shutdown" : "Arrêt du bot...",
+  "lang_list" : "Voici la liste des langues disponibles:\n{0}",
+  "lang_changed" : "La langue a été définie sur: {0}",
+  "lang_not_found" : "Cette langue n'a pas été trouvée."
 }

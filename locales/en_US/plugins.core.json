@@ -12,5 +12,8 @@
   "ext_alreadyloaded" : "Plugin `{0}` is already loaded",
   "ext_notloaded" : "Plugin `{0}` isn't loaded",
   "help_not_found" : "The searched element has not been found.",
-  "shutdown" : "Shutting down the bot..."
+  "shutdown" : "Shutting down the bot...",
+  "lang_list" : "Here's the available language list:\n{0}",
+  "lang_changed" : "The language has been changed to: {0}",
+  "lang_not_found" : "This language has not been found."
 }
