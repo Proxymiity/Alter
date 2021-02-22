@@ -15,8 +15,8 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(help="shutdown_help", brief="shutdown_brief")
     @checks.bot_owner()
+    @commands.command(help="shutdown_help", brief="shutdown_brief")
     async def shutdown(self, ctx, opt="normal"):
         if "kill" in opt:
             print("Bot shutdown seq. called with exit()")
@@ -26,14 +26,14 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             await ctx.send(loc.get(ctx, db, mn, "shutdown"))
             await self.bot.logout()
 
-    @commands.group(help="plugin_help", brief="plugin_brief")
     @checks.bot_owner()
+    @commands.group(help="plugin_help", brief="plugin_brief")
     async def plugin(self, ctx):
         if ctx.invoked_subcommand is None:
             await help.send_cmd_help(ctx, ctx.command)
 
-    @plugin.command(brief="plugin_load_brief", hidden=False)
     @checks.bot_owner()
+    @plugin.command(brief="plugin_load_brief", hidden=False)
     async def load(self, ctx, ext, store=None):
         try:
             self.bot.load_extension(ext)
@@ -47,8 +47,8 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
                 config["loadPlugins"].append(ext)
                 dataIO.save_json("data/config.json", config)
 
-    @plugin.command(brief="plugin_unload_brief", hidden=False)
     @checks.bot_owner()
+    @plugin.command(brief="plugin_unload_brief", hidden=False)
     async def unload(self, ctx, ext, store=None):
         try:
             self.bot.unload_extension(ext)
@@ -60,8 +60,8 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
                 config["loadPlugins"].remove(ext)
                 dataIO.save_json("data/config.json", config)
 
-    @plugin.command(brief="plugin_reload_brief", hidden=False)
     @checks.bot_owner()
+    @plugin.command(brief="plugin_reload_brief", hidden=False)
     async def reload(self, ctx, ext):
         try:
             self.bot.reload_extension(ext)
