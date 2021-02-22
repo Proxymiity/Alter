@@ -6,7 +6,7 @@ db_d = {"name": "Alter", "prefix": "::", "locale": "en_US"}
 
 
 def check():
-    db.create_table("server_settings")
+    db.create_table("serversettings")
     db.create_table("settings")
     for x in db_d:
         if not db.read("settings", 0, x):

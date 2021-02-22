@@ -114,7 +114,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     async def lang(self, ctx, lang=None):
         if lang:
             if lang in locales:
-                db.write("server_settings", ctx.guild.id, "locale", lang)
+                db.write("serversettings", ctx.guild.id, "locale", lang)
                 await ctx.send(loc.get(ctx, db, mn, "lang_changed").format(locales[lang]))
             else:
                 await ctx.send(loc.get(ctx, db, mn, "lang_not_found"))
