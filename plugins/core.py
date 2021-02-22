@@ -89,7 +89,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             db.delete("settings", 0, "invite")
         elif link == "off":
             db.write("settings", 0, "invite", "off")
-            await ctx.send(loc.get(ctx, db, mn, "config_invite"))
+            await ctx.send(loc.get(ctx, db, mn, "config_invite_disabled"))
             return
         else:
             if not link.startswith("https://"):
