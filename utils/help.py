@@ -78,7 +78,7 @@ def _paginate(ctx, commands, embeds_input=None):
         help_part.set_author(name=loc.get(ctx, db, mn, "help_title"))
         for x in cmds[p:n]:
             if x.brief:
-                help_part.add_field(name=x.name, value=loc.get(ctx, dn, mn, x.brief), inline=False)
+                help_part.add_field(name=x.name, value=loc.get(ctx, db, dn, x.brief), inline=False)
             else:
                 help_part.add_field(name=x.name, value=loc.get(ctx, db, mn, "help_undef"), inline=True)
             p = p + 1
