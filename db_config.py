@@ -1,9 +1,9 @@
 import sys
 from utils.dataIO import dataIO
 from importlib import import_module
+from utils import defaults
+defaults.check()
 db = import_module(dataIO.load_json("data/config.json")["storage"])
-db.create_table("server_settings")
-db.create_table("settings")
 args = sys.argv
 
 if len(args) == 1:

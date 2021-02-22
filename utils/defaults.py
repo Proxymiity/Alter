@@ -2,7 +2,7 @@ from utils.dataIO import dataIO
 from importlib import import_module
 config = dataIO.load_json("data/config.json")
 db = import_module(config["storage"])
-db_d = {"name": "Alter", "prefix": "::", "locale": "fr_FR"}
+db_d = {"name": "Alter", "prefix": "::", "locale": "en_US"}
 
 
 def check():
