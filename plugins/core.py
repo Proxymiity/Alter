@@ -9,6 +9,7 @@ config = dataIO.load_json("data/config.json")
 locales = dataIO.load_json("locales/locales.json")
 db = import_module(config["storage"])
 mn = "plugins.core"
+inv_d = "https://bot.proxymiity.fr/@/"
 
 
 class Core(commands.Cog, command_attrs=dict(hidden=True)):
@@ -70,6 +71,40 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             await ctx.send(loc.get(ctx, db, mn, "ext_notfound").format(ext))
         except commands.ExtensionNotLoaded:
             await ctx.send(loc.get(ctx, db, mn, "ext_notloaded").format(ext))
+
+    @checks.bot_owner()
+    @commands.group(help="config_help", brief="config_brief")
+    async def config(self, ctx):
+        if ctx.invoked_subcommand is None:
+            await help.send_cmd_help(ctx, ctx.command)
+
+    @checks.bot_owner()
+    @config.command(brief="config_invite_brief", name="invite", hidden=False)
+    async def set_invite(self, ctx, link: str = None):
+        if not link:
+            await ctx.send(loc.get(ctx, db, mn, "config_invite").format(db.read("settings", 0, "invite")
+                                                                        or inv_d + str(ctx.me.id)))
+            return
+        if link == "default":
+            db.delete("settings", 0, "invite")
+        elif link == "off":
+            db.write("settings", 0, "invite", "off")
+            await ctx.send(loc.get(ctx, db, mn, "config_invite"))
+            return
+        else:
+            if not link.startswith("https://"):
+                await ctx.send(loc.get(ctx, db, mn, "config_invite_invalid"))
+                return
+            db.write("settings", 0, "invite", link)
+        await ctx.send(loc.get(ctx, db, mn, "config_invite_set").format(link))
+
+    @commands.command(hidden=False, help="invite_help", brief="invite_brief")
+    async def invite(self, ctx):
+        inv = db.read("settings", 0, "invite") or inv_d + str(ctx.me.id)
+        if inv == "off":
+            await ctx.send(loc.get(ctx, db, mn, "invite_disabled"))
+        else:
+            await ctx.send(loc.get(ctx, db, mn, "invite").format(inv))
 
     @commands.command(hidden=False, help="info_help", brief="info_brief")
     async def info(self, ctx):

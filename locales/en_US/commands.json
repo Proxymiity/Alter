@@ -21,5 +21,10 @@
   "idban_brief" : "Bans an user via its ID",
   "idban_help" : "Ban an user from the server with its Discord ID.\nThe reason is optional.",
   "unban_brief" : "Unbans an user",
-  "unban_help" : "Unban an user from the server"
+  "unban_help" : "Unban an user from the server",
+  "config_brief" : "Configure the bot's behaviour",
+  "config_help" : "Allows the owner to configure the status, the invite link, etc.",
+  "config_invite_brief" : "Sets the invite link. Use `default` to use the default.",
+  "invite_brief" : "Gets an invite link for this bot",
+  "invite_help" : "Get an invite link to invite this bot on a Discord server."
 }

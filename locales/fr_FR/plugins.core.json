@@ -15,5 +15,11 @@
   "shutdown" : "Arrêt du bot...",
   "lang_list" : "Voici la liste des langues disponibles:\n{0}",
   "lang_changed" : "La langue a été définie sur: {0}",
-  "lang_not_found" : "Cette langue n'a pas été trouvée."
+  "lang_not_found" : "Cette langue n'a pas été trouvée.",
+  "config_invite" : "Actuellement, le lien d'invitation pour le bot est {0}\nMettez-le à `off` pour le désactiver, ou à `default` pour le réinitialiser.",
+  "config_invite_set" : "Le lien d'invitation est maintenant {0}",
+  "config_invite_invalid" : "Le lien spécifié est invalide. Il doit commencer par `https://`",
+  "config_invite_disabled" : "Le lien d'invitation a été désactivé.",
+  "invite_disabled": "Le lien d'invitation pour ce bot a été désactivé.",
+  "invite" : "Voici un lien pour inviter ce bot sur votre serveur: {0}"
 }

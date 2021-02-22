@@ -15,5 +15,11 @@
   "shutdown" : "Shutting down the bot...",
   "lang_list" : "Here's the available language list:\n{0}",
   "lang_changed" : "The language has been changed to: {0}",
-  "lang_not_found" : "This language has not been found."
+  "lang_not_found" : "This language has not been found.",
+  "config_invite" : "Currently, the invitation link for the bot is {0}\nSet it to `off` to disable it, or to `default` to reset it.",
+  "config_invite_set" : "The invitation link is now {0}",
+  "config_invite_invalid" : "The specified invitation link is invalid. It must start with `https://`",
+  "config_invite_disabled" : "The invitation link has been disabled.",
+  "invite_disabled": "The invite link for this bot has been disabled.",
+  "invite" : "Here's the link to invite this bot on your server: {0}"
 }

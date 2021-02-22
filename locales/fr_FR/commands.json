@@ -21,5 +21,10 @@
   "idban_brief" : "Bannir un utilisateur via son identifiant",
   "idban_help" : "Bannit un utilisateur du serveur en spécifiant son identifiant.\nIl est possible de spécifier une raison.",
   "unban_brief" : "Débannir un utilisateur",
-  "unban_help" : "Débannit un utilisateur du serveur"
+  "unban_help" : "Débannit un utilisateur du serveur",
+  "config_brief" : "Configurer le comportement du bot",
+  "config_help" : "Permet au propriétaire de gérer le statut, le lien d'invitation, etc.",
+  "config_invite_brief" : "Définit un lien d'invitation. Mettez `default` pour utiliser celui par défaut.",
+  "invite_brief" : "Obtient un lien d'invtitation pour ce bot",
+  "invite_help" : "Obtient un lien d'invitation pour inviter ce bot sur un serveur Discord."
 }
