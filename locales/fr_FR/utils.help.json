@@ -5,6 +5,6 @@
   "help_undef" : ":tools:",
   "modules_all" : "Tous les modules",
   "about_bot" : "`{0}` est un bot multifonction [open-sourcé sur GitHub](https://github.com/Proxymiity/Alter).",
-  "help_how" : "Toutes les commandes commencent par `{0}`.\nUtilisez la commande `help` pour obtenir de l'aide sur un module ou sur une commande. Exemple: `{0}help moderation` affichera les commandes de modération.",
+  "help_how" : "Toutes les commandes commencent par `{0}`.\nUtilisez la commande `help` pour obtenir de l'aide sur un module ou sur une commande. Exemple: `{0}help moderation` affichera les commandes de modération.\nVous pouvez changer la langue avec la commande `{0}lang`.",
   "arg_error" : "Erreur: Un ou plusieurs argument(s) sont invalides. Veuillez réessayer."
 }
