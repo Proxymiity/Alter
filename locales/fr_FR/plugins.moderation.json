@@ -9,6 +9,8 @@
   "kick_dm" : "Vous avez été éjecté du serveur {0}\nRaison: `{1}`",
   "unban_success" : "L'utilisateur {0} a été débanni.",
   "idban_is_member" : "L'utilisateur spécifié est dans ce serveur ({0}). Utilisez `{1}ban` en mentionnant l'utilisateur.\n*Astuce: Vous pouvez mentionner cet utilisateur en faisant `<@{2}>`*",
+  "purge_success" : "{0} messages purgés.",
+  "purge_null" : "Aucun message purgé.",
   "target_error" : "Impossible d'exécuter cette action sur cet utilisateur.",
   "dm_error" : "L'envoi d'un message à l'utilisateur a échoué.",
   "user_notfound" : "L'utilisateur n'a pas été trouvé."

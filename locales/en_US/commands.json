@@ -26,5 +26,7 @@
   "config_help" : "Allows the owner to configure the status, the invite link, etc.",
   "config_invite_brief" : "Sets the invite link. Use `default` to use the default.",
   "invite_brief" : "Gets an invite link for this bot",
-  "invite_help" : "Get an invite link to invite this bot on a Discord server."
+  "invite_help" : "Get an invite link to invite this bot on a Discord server.",
+  "purge_brief" : "Purges messages",
+  "purge_help" : "Purge *x* messages. Example: `{0}purge 50` (purges 50 messages), `purge 100 @Alter` (purges 100 messages from @Alter)"
 }

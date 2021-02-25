@@ -26,5 +26,7 @@
   "config_help" : "Permet au propriétaire de gérer le statut, le lien d'invitation, etc.",
   "config_invite_brief" : "Définit un lien d'invitation. Mettez `default` pour utiliser celui par défaut.",
   "invite_brief" : "Obtient un lien d'invtitation pour ce bot",
-  "invite_help" : "Obtient un lien d'invitation pour inviter ce bot sur un serveur Discord."
+  "invite_help" : "Obtient un lien d'invitation pour inviter ce bot sur un serveur Discord.",
+  "purge_brief" : "Purger des messages",
+  "purge_help" : "Purge *x* messages. Exemple: `{0}purge 50` (purge 50 messages), `purge 100 @Alter` (purge 100 messages de @Alter)"
 }

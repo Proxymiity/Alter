@@ -103,6 +103,21 @@ class Moderation(commands.Cog):
                 return
         await ctx.send(loc.get(ctx, db, mn, "user_notfound"))
 
+    @checks.permission(discord.Permissions.manage_messages)
+    @commands.guild_only()
+    @commands.command(help="purge_help", brief="purge_brief")
+    async def purge(self, ctx, nb: int, user: discord.User = None):
+        if user:
+            def chk(m):
+                return m.author == user
+            deleted = await ctx.channel.purge(limit=nb, check=chk, bulk=True)
+        else:
+            deleted = await ctx.channel.purge(limit=nb, bulk=True)
+        if len(deleted) > 0:
+            await ctx.send(loc.get(ctx, db, mn, "purge_success").format(len(deleted)))
+        else:
+            await ctx.send(loc.get(ctx, db, mn, "purge_null"))
+
 
 def setup(bot):
     plugin = Moderation(bot)

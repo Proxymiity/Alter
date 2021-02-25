@@ -9,6 +9,8 @@
   "kick_dm" : "You have been kicked from the server {0}\nReason: `{1}`",
   "unban_success" : "User {0} has been unbanned.",
   "idban_is_member" : "The specified user is in this server ({0}). Use `{1}ban` while mentioning that user.\n*Tip: You can mention this user with `<@{2}>`*",
+  "purge_success" : "Purged {0} messages.",
+  "purge_null" : "No messages purged.",
   "target_error" : "Cannot execute that action on this user.",
   "dm_error" : "Sending a DM to this user has failed.",
   "user_notfound" : "Cannot find this user."
