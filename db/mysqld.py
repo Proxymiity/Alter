@@ -11,12 +11,19 @@ def sanitize(val):
     return "".join(x for x in val if x.isalnum())
 
 
+def check():
+    if not db.is_connected():
+        db.reconnect()
+
+
 def create_table(name: str):
+    check()
     name = sanitize(name)
     dbc.execute("CREATE TABLE IF NOT EXISTS {}(sid BIGINT UNSIGNED, name TEXT, value TEXT)".format(name))
 
 
 def delete_table(name: str):
+    check()
     name = sanitize(name)
     dbc.execute("SET foreign_key_checks = 0")
     dbc.execute("DROP TABLE IF EXISTS {}".format(name))
@@ -24,6 +31,7 @@ def delete_table(name: str):
 
 
 def read(table: str, sid: int, name: str):
+    check()
     table = sanitize(table)
     try:
         dbc.execute("SELECT value FROM {} WHERE sid=%s AND name=%s".format(table), (sid, name))
@@ -35,6 +43,7 @@ def read(table: str, sid: int, name: str):
 
 
 def write(table: str, sid: int, name: str, value: str):
+    check()
     table = sanitize(table)
     if read(table, sid, name) is None:
         dbc.execute("INSERT INTO {}(sid, name, value) VALUES (%s, %s, %s)".format(table), (sid, name, value))
@@ -44,6 +53,7 @@ def write(table: str, sid: int, name: str, value: str):
 
 
 def delete(table: str, sid: int, name: str):
+    check()
     table = sanitize(table)
     dbc.execute("DELETE FROM {} WHERE sid=%s AND name=%s".format(table), (sid, name))
     db.commit()
