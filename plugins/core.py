@@ -96,7 +96,8 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
                 await ctx.send(loc.get(ctx, db, mn, "config_invite_invalid"))
                 return
             db.write("settings", 0, "invite", link)
-        await ctx.send(loc.get(ctx, db, mn, "config_invite_set").format(link))
+        await ctx.send(loc.get(ctx, db, mn, "config_invite_set").format(db.read("settings", 0, "invite")
+                                                                        or inv_d + str(ctx.me.id)))
 
     @commands.command(hidden=False, help="invite_help", brief="invite_brief")
     async def invite(self, ctx):

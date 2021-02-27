@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from utils.dataIO import dataIO
-from utils import checks
+from utils import checks, help
 from utils import locale as loc
 from importlib import import_module
 
@@ -107,6 +107,10 @@ class Moderation(commands.Cog):
     @commands.guild_only()
     @commands.command(help="purge_help", brief="purge_brief")
     async def purge(self, ctx, nb: int, user: discord.User = None):
+        if not nb >= 1:
+            await help.send_cmd_help(ctx, ctx.command, error=True)
+            return
+        await ctx.message.delete()
         if user:
             def chk(m):
                 return m.author == user
