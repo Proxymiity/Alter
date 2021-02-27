@@ -37,7 +37,10 @@ def create_table(name: str):
 def delete_table(name: str):
     name = sanitize(name)
     t_path = Path(str(path) + "/" + name)
-    shutil.rmtree(str(t_path))
+    try:
+        shutil.rmtree(str(t_path))
+    except FileNotFoundError:
+        pass
 
 
 def read(table: str, sid: int, name: str):
