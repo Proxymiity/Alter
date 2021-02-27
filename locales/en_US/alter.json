@@ -8,5 +8,6 @@
   "err_missing_perm" : "An error occurred while checking permissions. Ensure that the bot has all the necessary permissions.",
   "err_pm" : "This command cannot be used in DM.",
   "err_pm_only" : "This command cannot be used in a server.",
-  "err_cd" : "This command cannot be used yet. Try again in {0:.0f} seconds."
+  "err_cd" : "This command cannot be used yet. Try again in {0:.0f} seconds.",
+  "err_nsfw" : "This command requires a NSFW channel."
 }

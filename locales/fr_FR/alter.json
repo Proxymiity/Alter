@@ -8,5 +8,6 @@
   "err_missing_perm" : "Une erreur est survenue lors de la vérification des permissions. Assurez-vous que le bot dispose des permissions nécessaires.",
   "err_pm" : "Cette commande ne peut pas être utilisée en MP.",
   "err_pm_only" : "Cette commande ne peut pas être utilisée sur un serveur.",
-  "err_cd" : "Cette commande ne peut pas encore être utilisée. Réessayez dans {0:.0f} secondes."
+  "err_cd" : "Cette commande ne peut pas encore être utilisée. Réessayez dans {0:.0f} secondes.",
+  "err_nsfw" : "Cette commande requiert un channel NSFW."
 }

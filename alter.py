@@ -32,6 +32,8 @@ async def on_command_error(ctx, error):
         await ctx.send(loc.get(ctx, db, mn, "err_pm_only"))
     elif isinstance(error, commands.DisabledCommand):
         await ctx.send(loc.get(ctx, db, mn, "err_disabled"))
+    elif isinstance(error, commands.NSFWChannelRequired):
+        await ctx.send(loc.load(dl, mn, "err_nsfw"))
     elif isinstance(error, commands.CommandOnCooldown):
         await ctx.send(loc.get(ctx, db, mn, "err_cd").format(error.retry_after))
     elif isinstance(error, commands.MissingRequiredArgument):
