@@ -3,7 +3,7 @@
   "info_bot_title" : "Bot infos",
   "info_bot" : "Owner: `{0}`\nUsers: `{1}`\nServers: `{2}`\nPrefix: `{3}`\nModules: `{4}`",
   "info_other_title" : "Other infos",
-  "info_other" : "[Gateway](https://discord.com/developers/docs/topics/gateway) latency: `{0} ms`\nID: `{1}`\nMessages in cache: `{2}`\n[discord.py](https://github.com/Rapptz/discord.py/) version: `v{3}`",
+  "info_other" : "[Gateway](https://discord.com/developers/docs/topics/gateway) latency: `{0} ms`\nID: `{1}`\nMessages in cache: `{2}`\n[discord.py](https://github.com/Rapptz/discord.py/) version: `v{3}`\nUptime : `{4}`",
   "info_unknown" : "Unknown",
   "ext_loaded" : "Successfully loaded plugin `{0}`",
   "ext_unloaded" : "Successfully unloaded plugin `{0}` ",

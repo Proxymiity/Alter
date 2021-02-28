@@ -4,6 +4,7 @@ from utils.dataIO import dataIO
 from utils import defaults; defaults.check()
 from utils import locale as loc
 from utils import help
+from datetime import datetime
 from importlib import import_module
 
 config = dataIO.load_json("data/config.json")
@@ -59,5 +60,6 @@ async def on_command_error(ctx, error):
         await ctx.send(loc.get(ctx, db, mn, "err_uncaught"))
 
 
+db.write("temp", 1, "start_time", str(datetime.now()))
 print(loc.load(dl, mn, "logging_in").format(token[0:5]))
 bot.run(token)

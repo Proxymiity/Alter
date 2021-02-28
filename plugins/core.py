@@ -3,6 +3,7 @@ from discord.ext import commands
 from utils.dataIO import dataIO
 from utils import checks, help
 from utils import locale as loc
+from datetime import datetime
 from importlib import import_module
 
 config = dataIO.load_json("data/config.json")
@@ -115,6 +116,12 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
         ping = int(self.bot.latency * 1000)
         embed = discord.Embed(title=loc.get(ctx, db, mn, "info_about"), color=discord.Color.teal())
         bot = self.bot.user
+        start_at = datetime.strptime(db.read("temp", 1, "start_time"), "%Y-%m-%d %H:%M:%S.%f")
+        diff = datetime.now() - start_at
+        h, r = divmod(int(diff.total_seconds()), 3600)
+        m, s = divmod(r, 60)
+        d, h = divmod(h, 24)
+        up = "{}:{}:{}:{}".format(d, h, m, s)
         embed.set_author(name=bot.name, icon_url=str(bot.avatar_url))
         embed.add_field(name=loc.get(ctx, db, mn, "info_bot_title"),
                         value=loc.get(ctx, db, mn, "info_bot").format(owner, len(self.bot.users),
@@ -124,7 +131,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
         embed.add_field(name=loc.get(ctx, db, mn, "info_other_title"),
                         value=loc.get(ctx, db, mn, "info_other").format(ping, self.bot.user.id,
                                                                         len(self.bot.cached_messages),
-                                                                        discord.__version__), inline=True)
+                                                                        discord.__version__, up), inline=True)
         embed.set_footer(text=db.read("settings", 0, "name"))
         await ctx.send(embed=embed)
 
