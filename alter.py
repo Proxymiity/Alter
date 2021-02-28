@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from utils.dataIO import dataIO
-from utils import defaults; defaults.check()
+from utils import tools; tools.check_defaults()
 from utils import locale as loc
 from utils import help
 from datetime import datetime

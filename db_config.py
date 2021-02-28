@@ -1,8 +1,8 @@
 import sys
 from utils.dataIO import dataIO
 from importlib import import_module
-from utils import defaults
-defaults.check()
+from utils.tools import check_defaults
+check_defaults()
 db = import_module(dataIO.load_json("data/config.json")["storage"])
 args = sys.argv
 
