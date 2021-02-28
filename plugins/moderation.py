@@ -33,7 +33,7 @@ class Moderation(commands.Cog):
             await member.send(loc.get(ctx, db, mn, "ban_dm").format(ctx.guild.name, reason))
         except (discord.Forbidden, discord.errors.HTTPException):
             await ctx.send(loc.get(ctx, db, mn, "dm_error"))
-        await member.ban(reason=reason)
+        await member.ban(reason=reason, delete_message_days=0)
         await ctx.send(loc.get(ctx, db, mn, "ban_success").format(member.name, reason))
 
     @checks.permission(discord.Permissions.kick_members)

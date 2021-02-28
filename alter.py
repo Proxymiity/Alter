@@ -44,10 +44,6 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.CommandInvokeError):
         if isinstance(error.original, discord.Forbidden):
             await ctx.send(loc.get(ctx, db, mn, "err_missing_perm"))
-        elif "Missing Permission" in "{}".format(error):
-            await ctx.send(loc.get(ctx, db, mn, "err_missing_perm"))
-        elif "FORBIDDEN" in "{}".format(error):
-            await ctx.send(loc.get(ctx, db, mn, "err_missing_perm"))
         else:
             await ctx.send(loc.get(ctx, db, mn, "err_exec").format(error))
     elif isinstance(error, commands.CommandNotFound):
