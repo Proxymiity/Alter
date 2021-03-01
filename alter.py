@@ -33,22 +33,22 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.NoPrivateMessage):
         await ctx.send(loc.load(dl, mn, "err_pm"))
     elif isinstance(error, commands.PrivateMessageOnly):
-        await ctx.send(loc.get(ctx, db, mn, "err_pm_only"))
+        await ctx.send(loc.get(ctx, mn, "err_pm_only"))
     elif isinstance(error, commands.DisabledCommand):
-        await ctx.send(loc.get(ctx, db, mn, "err_disabled"))
+        await ctx.send(loc.get(ctx, mn, "err_disabled"))
     elif isinstance(error, commands.NSFWChannelRequired):
         await ctx.send(loc.load(dl, mn, "err_nsfw"))
     elif isinstance(error, commands.CommandOnCooldown):
-        await ctx.send(loc.get(ctx, db, mn, "err_cd").format(error.retry_after))
+        await ctx.send(loc.get(ctx, mn, "err_cd").format(error.retry_after))
     elif isinstance(error, commands.MissingRequiredArgument):
         await help.send_cmd_help(ctx, ctx.command, error=True)
     elif isinstance(error, commands.BadArgument):
         await help.send_cmd_help(ctx, ctx.command, error=True)
     elif isinstance(error, commands.CommandInvokeError):
         if isinstance(error.original, discord.Forbidden):
-            await ctx.send(loc.get(ctx, db, mn, "err_missing_perm"))
+            await ctx.send(loc.get(ctx, mn, "err_missing_perm"))
         else:
-            await ctx.send(loc.get(ctx, db, mn, "err_exec").format(error))
+            await ctx.send(loc.get(ctx, mn, "err_exec").format(error))
     elif isinstance(error, commands.CommandNotFound):
         pass
     elif isinstance(error, commands.CheckFailure):
@@ -56,7 +56,7 @@ async def on_command_error(ctx, error):
     else:
         print("Uncaught exception {}".format(error))
         dataIO.save_json("error.json", [error])
-        await ctx.send(loc.get(ctx, db, mn, "err_uncaught"))
+        await ctx.send(loc.get(ctx, mn, "err_uncaught"))
 
 
 db.write("temp", 1, "start_time", str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))

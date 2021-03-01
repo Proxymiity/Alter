@@ -1,8 +1,10 @@
 from utils.dataIO import dataIO
 import os
+from importlib import import_module
+db = import_module(dataIO.load_json("data/config.json")["storage"])
 
 
-def get(ctx, db, mod, key):
+def get(ctx, mod, key):
     if ctx.guild:
         loc = db.read("serversettings", ctx.guild.id, "locale") or db.read("settings", 0, "locale")
     else:

@@ -15,13 +15,13 @@ async def summary(bot, ctx):
     cl = ""
     cogs = sorted(bot.cogs)
     for cog in cogs:
-        cl = cl + "`{}` {}\n".format(cog, loc.get(ctx, db, dn, cog.lower()))
-    embed = discord.Embed(title=loc.get(ctx, db, mn, "help_title"),
-                          description=loc.get(ctx, db, mn, "about_bot").format(db.read("settings", 0, "name")),
+        cl = cl + "`{}` {}\n".format(cog, loc.get(ctx, dn, cog.lower()))
+    embed = discord.Embed(title=loc.get(ctx, mn, "help_title"),
+                          description=loc.get(ctx, mn, "about_bot").format(db.read("settings", 0, "name")),
                           color=discord.Color.teal())
-    embed.add_field(name=loc.get(ctx, db, mn, "help_title"), value=loc.get(ctx, db, mn, "help_how").format(prefix),
+    embed.add_field(name=loc.get(ctx, mn, "help_title"), value=loc.get(ctx, mn, "help_how").format(prefix),
                     inline=False)
-    embed.add_field(name=loc.get(ctx, db, mn, "modules_all"), value=cl[:-1], inline=False)
+    embed.add_field(name=loc.get(ctx, mn, "modules_all"), value=cl[:-1], inline=False)
     await ctx.send(embed=embed)
 
 
@@ -44,15 +44,15 @@ async def send_plugin_help(ctx, cog):
 
 
 async def send_cmd_help(ctx, cmd, error=False):
-    desc = loc.get(ctx, db, mn, "help_undef")
+    desc = loc.get(ctx, mn, "help_undef")
     if cmd.brief:
-        desc = loc.get(ctx, db, dn, cmd.brief)
+        desc = loc.get(ctx, dn, cmd.brief)
     embed = discord.Embed(title=cmd.name, description=desc, color=discord.Color.teal())
     if error:
         embed = discord.Embed(title=cmd.name, description=desc, color=discord.Color.red())
-        embed.set_footer(text=loc.get(ctx, db, mn, "arg_error"))
+        embed.set_footer(text=loc.get(ctx, mn, "arg_error"))
     if cmd.help:
-        embed.add_field(name=loc.get(ctx, db, mn, "help_title"), value=loc.get(ctx, db, dn, cmd.help).format(prefix))
+        embed.add_field(name=loc.get(ctx, mn, "help_title"), value=loc.get(ctx, dn, cmd.help).format(prefix))
     embed.set_author(name=cmd.cog_name)
     await ctx.send(embed=embed)
     if isinstance(cmd, discord_commands.Group):
@@ -74,13 +74,13 @@ def _paginate(ctx, commands, embeds_input=None):
     n = 25
     while p < len(cmds):
         help_part = discord.Embed(title=cmds[0].cog.qualified_name, color=discord.Color.teal(),
-                                  description=loc.get(ctx, db, dn, cmds[0].cog.qualified_name.lower()))
-        help_part.set_author(name=loc.get(ctx, db, mn, "help_title"))
+                                  description=loc.get(ctx, dn, cmds[0].cog.qualified_name.lower()))
+        help_part.set_author(name=loc.get(ctx, mn, "help_title"))
         for x in cmds[p:n]:
             if x.brief:
-                help_part.add_field(name=x.name, value=loc.get(ctx, db, dn, x.brief), inline=False)
+                help_part.add_field(name=x.name, value=loc.get(ctx, dn, x.brief), inline=False)
             else:
-                help_part.add_field(name=x.name, value=loc.get(ctx, db, mn, "help_undef"), inline=True)
+                help_part.add_field(name=x.name, value=loc.get(ctx, mn, "help_undef"), inline=True)
             p = p + 1
         embeds_input.append(help_part)
         n = n + 25

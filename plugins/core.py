@@ -21,8 +21,8 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.command(help="shutdown_help", brief="shutdown_brief")
     async def shutdown(self, ctx, opt="normal"):
         db.delete_table("temp")
-        print(loc.get(ctx, db, mn, "shutdown"))
-        await ctx.send(loc.get(ctx, db, mn, "shutdown"))
+        print(loc.get(ctx, mn, "shutdown"))
+        await ctx.send(loc.get(ctx, mn, "shutdown"))
         await self.bot.change_presence(status=tools.get_status("offline"))
         if "kill" in opt:
             exit(-1)
@@ -40,11 +40,11 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     async def load(self, ctx, ext, store=None):
         try:
             self.bot.load_extension(ext)
-            await ctx.send(loc.get(ctx, db, mn, "ext_loaded").format(ext))
+            await ctx.send(loc.get(ctx, mn, "ext_loaded").format(ext))
         except commands.ExtensionNotFound:
-            await ctx.send(loc.get(ctx, db, mn, "ext_notfound").format(ext))
+            await ctx.send(loc.get(ctx, mn, "ext_notfound").format(ext))
         except commands.ExtensionAlreadyLoaded:
-            await ctx.send(loc.get(ctx, db, mn, "ext_alreadyloaded").format(ext))
+            await ctx.send(loc.get(ctx, mn, "ext_alreadyloaded").format(ext))
         finally:
             if ext not in config["loadPlugins"] and store == "-config":
                 config["loadPlugins"].append(ext)
@@ -55,9 +55,9 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     async def unload(self, ctx, ext, store=None):
         try:
             self.bot.unload_extension(ext)
-            await ctx.send(loc.get(ctx, db, mn, "ext_unloaded").format(ext))
+            await ctx.send(loc.get(ctx, mn, "ext_unloaded").format(ext))
         except commands.ExtensionNotLoaded:
-            await ctx.send(loc.get(ctx, db, mn, "ext_notloaded").format(ext))
+            await ctx.send(loc.get(ctx, mn, "ext_notloaded").format(ext))
         finally:
             if ext in config["loadPlugins"] and store == "-config":
                 config["loadPlugins"].remove(ext)
@@ -68,11 +68,11 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     async def reload(self, ctx, ext):
         try:
             self.bot.reload_extension(ext)
-            await ctx.send(loc.get(ctx, db, mn, "ext_reloaded").format(ext))
+            await ctx.send(loc.get(ctx, mn, "ext_reloaded").format(ext))
         except commands.ExtensionNotFound:
-            await ctx.send(loc.get(ctx, db, mn, "ext_notfound").format(ext))
+            await ctx.send(loc.get(ctx, mn, "ext_notfound").format(ext))
         except commands.ExtensionNotLoaded:
-            await ctx.send(loc.get(ctx, db, mn, "ext_notloaded").format(ext))
+            await ctx.send(loc.get(ctx, mn, "ext_notloaded").format(ext))
 
     @checks.bot_owner()
     @commands.group(help="config_help", brief="config_brief", aliases=["conf"])
@@ -84,22 +84,22 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     @config.command(brief="config_invite_brief", name="invite", hidden=False)
     async def set_invite(self, ctx, link: str = None):
         if not link:
-            await ctx.send(loc.get(ctx, db, mn, "config_invite").format(db.read("settings", 0, "invite")
-                                                                        or inv_d + str(ctx.me.id)))
+            await ctx.send(loc.get(ctx, mn, "config_invite").format(db.read("settings", 0, "invite")
+                                                                    or inv_d + str(ctx.me.id)))
             return
         if link == "default":
             db.delete("settings", 0, "invite")
         elif link == "off":
             db.write("settings", 0, "invite", "off")
-            await ctx.send(loc.get(ctx, db, mn, "config_invite_disabled"))
+            await ctx.send(loc.get(ctx, mn, "config_invite_disabled"))
             return
         else:
             if not link.startswith("https://"):
-                await ctx.send(loc.get(ctx, db, mn, "config_invite_invalid"))
+                await ctx.send(loc.get(ctx, mn, "config_invite_invalid"))
                 return
             db.write("settings", 0, "invite", link)
-        await ctx.send(loc.get(ctx, db, mn, "config_invite_set").format(db.read("settings", 0, "invite")
-                                                                        or inv_d + str(ctx.me.id)))
+        await ctx.send(loc.get(ctx, mn, "config_invite_set").format(db.read("settings", 0, "invite")
+                                                                    or inv_d + str(ctx.me.id)))
 
     @checks.bot_owner()
     @config.command(help="config_status_help", brief="config_status_brief", name="status", hidden=False)
@@ -109,7 +109,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             return
         db.write("settings", 0, "status", status)
         await self.bot.change_presence(status=tools.get_status(status))
-        await ctx.send(loc.get(ctx, db, mn, "config_status_set"))
+        await ctx.send(loc.get(ctx, mn, "config_status_set"))
 
     @checks.bot_owner()
     @config.command(help="config_presence_help", brief="config_presence_brief", name="presence", hidden=False)
@@ -124,23 +124,23 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             db.write("settings", 0, "presence_type", p_type)
             db.write("settings", 0, "presence_value", p_val)
         await self.bot.change_presence(activity=tools.get_presence(p_type, p_val))
-        await ctx.send(loc.get(ctx, db, mn, "config_presence_set"))
+        await ctx.send(loc.get(ctx, mn, "config_presence_set"))
 
     @commands.command(hidden=False, help="invite_help", brief="invite_brief")
     async def invite(self, ctx):
         inv = db.read("settings", 0, "invite") or inv_d + str(ctx.me.id)
         if inv == "off":
-            await ctx.send(loc.get(ctx, db, mn, "invite_disabled"))
+            await ctx.send(loc.get(ctx, mn, "invite_disabled"))
         else:
-            await ctx.send(loc.get(ctx, db, mn, "invite").format(inv))
+            await ctx.send(loc.get(ctx, mn, "invite").format(inv))
 
     @commands.command(hidden=False, help="info_help", brief="info_brief")
     async def info(self, ctx):
         owner = self.bot.get_user(config["owner"])
         if owner is None:
-            owner = loc.get(ctx, db, mn, "info_unknown")
+            owner = loc.get(ctx, mn, "info_unknown")
         ping = int(self.bot.latency * 1000)
-        embed = discord.Embed(title=loc.get(ctx, db, mn, "info_about"), color=discord.Color.teal())
+        embed = discord.Embed(title=loc.get(ctx, mn, "info_about"), color=discord.Color.teal())
         bot = self.bot.user
         start_at = datetime.strptime(db.read("temp", 1, "start_time"), "%Y-%m-%d %H:%M:%S")
         diff = datetime.now() - start_at
@@ -149,15 +149,15 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
         d, h = divmod(h, 24)
         up = "{}:{}:{}:{}".format(d, h, m, s)
         embed.set_author(name=bot.name, icon_url=str(bot.avatar_url))
-        embed.add_field(name=loc.get(ctx, db, mn, "info_bot_title"),
-                        value=loc.get(ctx, db, mn, "info_bot").format(owner, len(self.bot.users),
-                                                                      len(self.bot.guilds),
-                                                                      db.read("settings", 0, "prefix"),
-                                                                      len(self.bot.cogs)), inline=True)
-        embed.add_field(name=loc.get(ctx, db, mn, "info_other_title"),
-                        value=loc.get(ctx, db, mn, "info_other").format(ping, self.bot.user.id,
-                                                                        len(self.bot.cached_messages),
-                                                                        discord.__version__, up), inline=True)
+        embed.add_field(name=loc.get(ctx, mn, "info_bot_title"),
+                        value=loc.get(ctx, mn, "info_bot").format(owner, len(self.bot.users),
+                                                                  len(self.bot.guilds),
+                                                                  db.read("settings", 0, "prefix"),
+                                                                  len(self.bot.cogs)), inline=True)
+        embed.add_field(name=loc.get(ctx, mn, "info_other_title"),
+                        value=loc.get(ctx, mn, "info_other").format(ping, self.bot.user.id,
+                                                                    len(self.bot.cached_messages),
+                                                                    discord.__version__, up), inline=True)
         embed.set_footer(text=db.read("settings", 0, "name"))
         await ctx.send(embed=embed)
 
@@ -174,7 +174,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             if any(c.name == query.lower() for c in self.bot.commands):
                 await help.send_cmd_help(ctx, self.bot.get_command(query.lower()))
                 return
-            await ctx.send(loc.get(ctx, db, mn, "help_not_found"))
+            await ctx.send(loc.get(ctx, mn, "help_not_found"))
         else:
             await help.summary(self.bot, ctx)
 
@@ -185,14 +185,14 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
         if lang:
             if lang in locales:
                 db.write("serversettings", ctx.guild.id, "locale", lang)
-                await ctx.send(loc.get(ctx, db, mn, "lang_changed").format(locales[lang]))
+                await ctx.send(loc.get(ctx, mn, "lang_changed").format(locales[lang]))
             else:
-                await ctx.send(loc.get(ctx, db, mn, "lang_not_found"))
+                await ctx.send(loc.get(ctx, mn, "lang_not_found"))
         else:
             lc = []
             for x in locales:
                 lc.append("`" + x + "` " + locales[x])
-            await ctx.send(loc.get(ctx, db, mn, "lang_list").format("\n".join(lc)))
+            await ctx.send(loc.get(ctx, mn, "lang_list").format("\n".join(lc)))
 
 
 def setup(bot):
