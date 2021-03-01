@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from utils.dataIO import dataIO
-from utils import checks, help
+from utils import checks, help, tools
 from utils import locale as loc
 from datetime import datetime
 from importlib import import_module
@@ -26,6 +26,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
         else:
             print(loc.get(ctx, db, mn, "shutdown"))
             await ctx.send(loc.get(ctx, db, mn, "shutdown"))
+            await self.bot.change_presence(status=tools.get_status("offline"))
             await self.bot.logout()
 
     @checks.bot_owner()
@@ -99,6 +100,31 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             db.write("settings", 0, "invite", link)
         await ctx.send(loc.get(ctx, db, mn, "config_invite_set").format(db.read("settings", 0, "invite")
                                                                         or inv_d + str(ctx.me.id)))
+
+    @checks.bot_owner()
+    @config.command(help="config_status_help", brief="config_status_brief", name="status", hidden=False)
+    async def set_status(self, ctx, status=None):
+        if status not in ["online", "idle", "dnd", "offline"]:
+            await help.send_cmd_help(ctx, ctx.command, error=True)
+            return
+        db.write("settings", 0, "status", status)
+        await self.bot.change_presence(status=tools.get_status(status))
+        await ctx.send(loc.get(ctx, db, mn, "config_status_set"))
+
+    @checks.bot_owner()
+    @config.command(help="config_presence_help", brief="config_presence_brief", name="presence", hidden=False)
+    async def set_presence(self, ctx, p_type, *, p_val=None):
+        if p_type not in ["none", "game", "listen", "watch", "compete", "stream"] or not p_val and p_type != "none":
+            await help.send_cmd_help(ctx, ctx.command, error=True)
+            return
+        if p_type == "none":
+            db.write("settings", 0, "presence_type", "none")
+            db.write("settings", 0, "presence_value", "none")
+        else:
+            db.write("settings", 0, "presence_type", p_type)
+            db.write("settings", 0, "presence_value", p_val)
+        await self.bot.change_presence(activity=tools.get_presence(p_type, p_val))
+        await ctx.send(loc.get(ctx, db, mn, "config_presence_set"))
 
     @commands.command(hidden=False, help="invite_help", brief="invite_brief")
     async def invite(self, ctx):
