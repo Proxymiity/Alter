@@ -69,7 +69,8 @@ class Utility(commands.Cog):
             u.joined_at.strftime(loc.get(ctx, db, "region", "date")), int(delta_j.days)
         ))
         embed.add_field(name=loc.get(ctx, db, mn, "misc"), value=loc.get(ctx, db, mn, "usr_misc").format(
-            ", ".join([loc.get(ctx, db, mn, "flags")[p[0]] for p in u.public_flags if p[1] is True])
+            ", ".join([loc.get(ctx, db, mn, "flags")[p[0]] for p in u.public_flags if p[1] is True]) or
+            loc.get(ctx, db, mn, "empty")
         ))
         await ctx.send(embed=embed)
 
