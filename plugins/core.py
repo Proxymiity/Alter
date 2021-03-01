@@ -20,13 +20,13 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     @checks.bot_owner()
     @commands.command(help="shutdown_help", brief="shutdown_brief")
     async def shutdown(self, ctx, opt="normal"):
+        db.delete_table("temp")
+        print(loc.get(ctx, db, mn, "shutdown"))
+        await ctx.send(loc.get(ctx, db, mn, "shutdown"))
+        await self.bot.change_presence(status=tools.get_status("offline"))
         if "kill" in opt:
-            print("Bot shutdown seq. called with exit()")
             exit(-1)
         else:
-            print(loc.get(ctx, db, mn, "shutdown"))
-            await ctx.send(loc.get(ctx, db, mn, "shutdown"))
-            await self.bot.change_presence(status=tools.get_status("offline"))
             await self.bot.logout()
 
     @checks.bot_owner()
