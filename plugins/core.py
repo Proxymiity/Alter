@@ -75,7 +75,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             await ctx.send(loc.get(ctx, db, mn, "ext_notloaded").format(ext))
 
     @checks.bot_owner()
-    @commands.group(help="config_help", brief="config_brief")
+    @commands.group(help="config_help", brief="config_brief", aliases=["conf"])
     async def config(self, ctx):
         if ctx.invoked_subcommand is None:
             await help.send_cmd_help(ctx, ctx.command)
@@ -180,7 +180,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
 
     @checks.permission(discord.Permissions.manage_guild)
     @commands.guild_only()
-    @commands.command(hidden=False, help="lang_help", brief="lang_brief")
+    @commands.command(hidden=False, help="lang_help", brief="lang_brief", aliases=["locale"])
     async def lang(self, ctx, lang=None):
         if lang:
             if lang in locales:

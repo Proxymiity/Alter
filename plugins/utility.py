@@ -16,7 +16,7 @@ class Utility(commands.Cog):
         self.bot = bot
 
     @commands.guild_only()
-    @commands.command(help="serverinfo_help", brief="serverinfo_brief")
+    @commands.command(help="serverinfo_help", brief="serverinfo_brief", aliases=["server"])
     async def serverinfo(self, ctx):
         g = ctx.guild
         online = len([m.status for m in g.members if m.status != discord.Status.offline])
@@ -42,7 +42,7 @@ class Utility(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.guild_only()
-    @commands.command(help="userinfo_help", brief="userinfo_brief")
+    @commands.command(help="userinfo_help", brief="userinfo_brief", aliases=["user"])
     async def userinfo(self, ctx, user: discord.User = None):
         if not user:
             u = ctx.author
