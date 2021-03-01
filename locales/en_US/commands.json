@@ -2,6 +2,7 @@
   "none" : ":tools:",
   "core" : "Main bot commands (help, ping, etc.)",
   "moderation" : "Moderation commands (ban, idban, etc.)",
+  "utility" : "Utility commands (serverinfo, userinfo, etc.)",
 
   "help_brief" : "Show available commands",
   "help_help" : "Show every available command. By default, this shows the list of modules.\nYou can get help on a specific command with `{0}help [command]`, help on a module with `{0}help [module]` and all commands with `{0}help all`",
@@ -32,5 +33,9 @@
   "invite_brief" : "Gets an invite link for this bot",
   "invite_help" : "Get an invite link to invite this bot on a Discord server.",
   "purge_brief" : "Purges messages",
-  "purge_help" : "Purge *x* messages. Example: `{0}purge 50` (purges 50 messages), `purge 100 @Alter` (purges 100 messages from @Alter)"
+  "purge_help" : "Purge *x* messages. Example: `{0}purge 50` (purges 50 messages), `purge 100 @Alter` (purges 100 messages from @Alter)",
+  "serverinfo_brief" : "Shows info about this server",
+  "serverinfo_help" : "Show different infos related to this Discord server.",
+  "userinfo_brief" : "Shows info about an user",
+  "userinfo_help" : "Show different infos related to an user in this server. Defaults to your user."
 }

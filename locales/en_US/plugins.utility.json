@@ -1,0 +1,51 @@
+{
+  "user_notfound" : "Cannot find this user.",
+  "id": "ID: {0}",
+  "general" : "General",
+  "history" : "History",
+  "channel" : "Channels",
+  "roles" : "Roles",
+  "misc" : "Misc",
+  "empty" : "Empty",
+  "srv_general" : "Owner: {0}\nOnline/Total members: {1}/{2}\nBoosts: {3}\nCustom emojis: {4}/{5}\nRoles: {6}",
+  "srv_channel" : "Text Channels: {0}\nVoice Channels: {1}\nCategories: {2}\nVoice Region: `{3}`",
+  "srv_history" : "Creation date: {0}\nDays since creation: {1} days",
+  "srv_misc" : "Filesize limit: `{0} MB`\nBitrate limit: `{1} kbps`\nContent filter: {2}\nVerification: {3}",
+  "usr_general" : "Full name: {0}#{1}\nDisplay name: {2}\nStatus: {3}",
+  "usr_roles" : "{0}\nList: {1}",
+  "usr_history" : "Account creation date: {0} ({1} days ago)\nDate joined server: {2} ({3} days ago)",
+  "usr_misc" : "Flags: {0}",
+  "ct_filter" : {
+    "disabled" : "Disabled",
+    "no_role" : "Members without a role",
+    "all_members" : "All members"
+  },
+  "vr_level" : {
+    "none" : "Disabled",
+    "low" : "Verified email",
+    "medium" : "Verified email, on Discord for 5 minutes",
+    "high" : "Verified email, on server for 10 minutes",
+    "extreme" : "Verified phone"
+  },
+  "status" : {
+    "online" : "Online",
+    "idle" : "Idle",
+    "dnd" : "Do not disturb",
+    "offline" : "Offline"
+  },
+  "flags" : {
+    "staff" : "Discord Staff",
+    "partner" : "Discord Partner",
+    "hypesquad" : "HypeSquad Event Member",
+    "bug_hunter" : "Bug Hunter",
+    "hypesquad_bravery" : "HypeSquad Bravery",
+    "hypesquad_brilliance" : "HypeSquad Brilliance",
+    "hypesquad_balance" : "HypeSquad Balance",
+    "early_supporter" : "Early Supporter",
+    "team_user" : "Team User",
+    "system" : "System User",
+    "bug_hunter_level_2" : "Bug Hunter II",
+    "verified_bot" : "Verified Bot",
+    "verified_bot_developer" : "Verified Bot Developer"
+  }
+}

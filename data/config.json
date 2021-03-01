@@ -3,7 +3,8 @@
     "owner" : 0,
     "loadPlugins" : [
         "plugins.core",
-        "plugins.moderation"
+        "plugins.moderation",
+        "plugins.utility"
     ],
     "storage": "db.sqlited"
 }
