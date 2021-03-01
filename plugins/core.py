@@ -142,7 +142,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
         ping = int(self.bot.latency * 1000)
         embed = discord.Embed(title=loc.get(ctx, db, mn, "info_about"), color=discord.Color.teal())
         bot = self.bot.user
-        start_at = datetime.strptime(db.read("temp", 1, "start_time"), "%Y-%m-%d %H:%M:%S.%f")
+        start_at = datetime.strptime(db.read("temp", 1, "start_time"), "%Y-%m-%d %H:%M:%S")
         diff = datetime.now() - start_at
         h, r = divmod(int(diff.total_seconds()), 3600)
         m, s = divmod(r, 60)

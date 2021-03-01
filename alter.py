@@ -59,6 +59,6 @@ async def on_command_error(ctx, error):
         await ctx.send(loc.get(ctx, db, mn, "err_uncaught"))
 
 
-db.write("temp", 1, "start_time", str(datetime.now()))
+db.write("temp", 1, "start_time", str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
 print(loc.load(dl, mn, "logging_in").format(token[0:5]))
 bot.run(token)
