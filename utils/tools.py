@@ -43,3 +43,16 @@ def get_status(status):
         return discord.Status.dnd
     elif status == "offline":
         return discord.Status.offline
+
+
+def paginate(inp, embed_base: discord.Embed, inline=False, embeds=None, i_nb=25, i_st=0):
+    embeds = embeds or []
+    inp.sort(key=lambda c: c[0], reverse=False)
+    while i_st < len(inp):
+        embed = embed_base.copy()
+        for x in inp[i_st:i_nb]:
+            embed.add_field(name=x[0], value=x[1], inline=inline)
+            i_st = i_st + 1
+        embeds.append(embed)
+        i_nb = i_nb + 25
+    return embeds
