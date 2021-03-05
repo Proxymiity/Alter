@@ -1,4 +1,6 @@
 {
+  "False" : "Non",
+  "True" : "Oui",
   "info_about" : "A propos du bot",
   "info_bot_title" : "Infos du bot",
   "info_bot" : "Propriétaire : `{0}`\nUtilisateurs : `{1}`\nServeurs : `{2}`\nPréfixe : `{3}`\nModules : `{4}`",
@@ -22,6 +24,9 @@
   "config_invite_disabled" : "Le lien d'invitation a été désactivé.",
   "config_status_set" : "Le statut du bot a été changé.",
   "config_presence_set" : "L'activité du bot a été changée.",
+  "config_shard" : "{0} shard(s)",
+  "config_shard_n" : "Shard {0}",
+  "config_shard_v" : "Latence: `{0} ms`\nDéconnecté: {1}\nLimité: {2}",
   "invite_disabled": "Le lien d'invitation pour ce bot a été désactivé.",
   "invite" : "Voici un lien pour inviter ce bot sur votre serveur: {0}"
 }

@@ -13,7 +13,7 @@ mn = "alter"
 dl = db.read("settings", 0, "locale")
 token = config["token"]
 prefix = db.read("settings", 0, "prefix")
-bot = commands.Bot(prefix, intents=discord.Intents.all())
+bot = commands.AutoShardedBot(prefix, intents=discord.Intents.all())
 
 
 @bot.event
