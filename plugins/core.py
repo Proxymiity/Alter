@@ -81,6 +81,21 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             await help.send_cmd_help(ctx, ctx.command)
 
     @checks.bot_owner()
+    @config.command(brief="config_shards", name="shards", hidden=False)
+    async def list_shards(self, ctx):
+        sds = self.bot.shards
+        pages = []
+        first = discord.Embed(title=loc.get(ctx, mn, "config_shard").format(len(self.bot.shards)),
+                              color=discord.Color.teal())
+        for s in sds:
+            pages.append([loc.get(ctx, mn, "config_shard_n").format(sds[s].id),
+                          loc.get(ctx, mn, "config_shard_v").format(int(sds[s].latency*1000),
+                                                                    loc.get(ctx, mn, str(sds[s].is_closed())),
+                                                                    loc.get(ctx, mn, str(sds[s].is_ws_ratelimited())))])
+        for e in tools.paginate(pages, discord.Embed(color=discord.Color.teal()), first, True):
+            await ctx.send(embed=e)
+
+    @checks.bot_owner()
     @config.command(brief="config_invite_brief", name="invite", hidden=False)
     async def set_invite(self, ctx, link: str = None):
         if not link:
