@@ -45,14 +45,20 @@ def get_status(status):
         return discord.Status.offline
 
 
-def paginate(inp, embed_base: discord.Embed, inline=False, embeds=None, i_nb=25, i_st=0):
+def paginate(inp, base, first=None, inline=False, embeds=None, i_nb=25, i_st=0):
+    first = first or base
     embeds = embeds or []
     inp.sort(key=lambda c: c[0], reverse=False)
+    for x in inp[i_st:i_nb]:
+        first.add_field(name=x[0], value=x[1], inline=inline)
+        i_st += 1
+    embeds.append(first)
+    i_nb += i_nb
     while i_st < len(inp):
-        embed = embed_base.copy()
+        embed = base.copy()
         for x in inp[i_st:i_nb]:
             embed.add_field(name=x[0], value=x[1], inline=inline)
-            i_st = i_st + 1
+            i_st += 1
         embeds.append(embed)
-        i_nb = i_nb + 25
+        i_nb += i_nb
     return embeds
