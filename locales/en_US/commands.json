@@ -37,5 +37,7 @@
   "serverinfo_brief" : "Shows info about this server",
   "serverinfo_help" : "Show different infos related to this Discord server.",
   "userinfo_brief" : "Shows info about an user",
-  "userinfo_help" : "Show different infos related to an user in this server. Defaults to your user."
+  "userinfo_help" : "Show different infos related to an user in this server. Defaults to your user.",
+  "lang_brief" : "Changes the bot's language on this server",
+  "lang_help" : "Change the language used in messages. Commands name does not change."
 }
