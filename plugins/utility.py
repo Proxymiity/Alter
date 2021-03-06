@@ -21,7 +21,8 @@ class Utility(commands.Cog):
         if g.icon_url:
             embed.set_thumbnail(url=g.icon_url)
         embed.add_field(name=loc.get(ctx, mn, "general"), value=loc.get(ctx, mn, "srv_general").format(
-            g.owner, online, g.member_count, g.premium_subscription_count, len(g.emojis), g.emoji_limit, len(g.roles)
+            g.owner, online, g.member_count, g.premium_subscription_count, len(g.emojis), g.emoji_limit, len(g.roles),
+            g.icon_url
         ))
         embed.add_field(name=loc.get(ctx, mn, "channel"), value=loc.get(ctx, mn, "srv_channel").format(
             len(g.text_channels), len(g.voice_channels), len(g.categories), str(g.region)
@@ -54,7 +55,8 @@ class Utility(commands.Cog):
         embed.set_footer(text=loc.get(ctx, mn, "id").format(u.id))
         embed.set_thumbnail(url=u.avatar_url)
         embed.add_field(name=loc.get(ctx, mn, "general"), value=loc.get(ctx, mn, "usr_general").format(
-            u.name, u.discriminator, u.display_name, loc.get(ctx, mn, "status")[u.raw_status]
+            u.name, u.discriminator, u.display_name, loc.get(ctx, mn, "status")[u.raw_status],
+            u.avatar_url
         ))
         embed.add_field(name=loc.get(ctx, mn, "roles"), value=loc.get(ctx, mn, "usr_roles").format(
             len(roles), ", ".join([r.mention for r in roles]) or loc.get(ctx, mn, "empty")
