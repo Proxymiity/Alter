@@ -106,7 +106,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             await ctx.send(x)
 
     @checks.bot_owner()
-    @config.command(brief="config_servers_brief", name="server", hidden=False)
+    @config.command(brief="config_server_brief", name="server", hidden=False)
     async def get_server(self, ctx, sid: int, action=None):
         g = self.bot.get_guild(sid)
         if not g:
