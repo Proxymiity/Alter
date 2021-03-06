@@ -81,7 +81,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             await help.send_cmd_help(ctx, ctx.command)
 
     @checks.bot_owner()
-    @config.command(brief="config_shards", name="shards", hidden=False)
+    @config.command(brief="config_shard_brief", name="shards", hidden=False)
     async def list_shards(self, ctx):
         sds = self.bot.shards
         pages = []
