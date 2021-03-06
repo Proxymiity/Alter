@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands as discord_commands
 from utils.dataIO import dataIO
+from utils import tools
 from utils import locale as loc
 from importlib import import_module
 
@@ -62,26 +63,13 @@ async def send_cmd_help(ctx, cmd, error=False):
 
 
 def _paginate(ctx, commands, embeds_input=None):
-    if embeds_input is None:
-        embeds_input = []
-    command_list = commands
-    cmds = command_list.copy()
-    for command in command_list:
+    pages = []
+    cmds = commands.copy()
+    for command in commands:
         if command.hidden is True:
             cmds.remove(command)
-    cmds.sort(key=lambda c: c.name, reverse=False)
-    p = 0
-    n = 25
-    while p < len(cmds):
-        help_part = discord.Embed(title=cmds[0].cog.qualified_name, color=discord.Color.teal(),
-                                  description=loc.get(ctx, dn, cmds[0].cog.qualified_name.lower()))
-        help_part.set_author(name=loc.get(ctx, mn, "help_title"))
-        for x in cmds[p:n]:
-            if x.brief:
-                help_part.add_field(name=x.name, value=loc.get(ctx, dn, x.brief), inline=False)
-            else:
-                help_part.add_field(name=x.name, value=loc.get(ctx, mn, "help_undef"), inline=True)
-            p = p + 1
-        embeds_input.append(help_part)
-        n = n + 25
-    return embeds_input
+    for x in cmds:
+        pages.append([x.name, loc.get(ctx, dn, x.brief or "help_undef")])
+    main = discord.Embed(title=cmds[0].cog.qualified_name, color=discord.Color.teal(),
+                         description=loc.get(ctx, dn, cmds[0].cog.qualified_name.lower()))
+    return tools.paginate(pages, discord.Embed(color=discord.Color.teal()), main, False, embeds=embeds_input)
