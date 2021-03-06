@@ -62,3 +62,25 @@ def paginate(inp, base, first=None, inline=False, embeds=None, i_nb=25, i_st=0):
         embeds.append(embed)
         i_nb += i_nb
     return embeds
+
+
+def split_text(inp, chars=2000):
+    return [inp[x:x+chars] for x in range(0, len(inp), chars)]
+
+
+def paginate_text(inp, base_pre="", base_after="", first=None, mid_sep=": ", line_sep="\n", max_char=2000):
+    first = first or base_pre
+    outputs = [""]
+    output_cursor = 0
+    base_len = len(base_pre) + len(base_after)
+    outputs[output_cursor] += first + line_sep
+    inp.sort(key=lambda c: c[0], reverse=False)
+    for x in inp:
+        ap_len = len(x[0]) + len(mid_sep) + len(x[1]) + len(line_sep)
+        if len(outputs[output_cursor]) + ap_len + base_len >= max_char:
+            outputs[output_cursor] += base_after
+            outputs.append("")
+            output_cursor += 1
+            outputs[output_cursor] += base_pre + line_sep
+        outputs[output_cursor] += x[0] + mid_sep + x[1] + line_sep
+    return outputs
