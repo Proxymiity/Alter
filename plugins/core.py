@@ -96,6 +96,31 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             await ctx.send(embed=e)
 
     @checks.bot_owner()
+    @config.command(brief="config_servers_brief", name="servers", hidden=False)
+    async def list_servers(self, ctx):
+        servers = []
+        for s in self.bot.guilds:
+            servers.append(["`{}`".format(s.id), loc.get(ctx, mn, "config_servers_desc").format(s.name, s.owner_id)])
+        for x in tools.paginate_text(servers, first=loc.get(ctx, mn, "config_servers").format(len(self.bot.guilds)),
+                                     mid_sep="\n", line_sep="\n\n"):
+            await ctx.send(x)
+
+    @checks.bot_owner()
+    @config.command(brief="config_servers_brief", name="server", hidden=False)
+    async def get_server(self, ctx, sid: int, action=None):
+        g = self.bot.get_guild(sid)
+        if not g:
+            await ctx.send(loc.get(ctx, mn, "server_notfound"))
+        elif not action:
+            await ctx.send(loc.get(ctx, mn, "config_server_info").format(g.name, g.id, g.shard_id,
+                                                                         loc.get(ctx, mn, str(not g.unavailable))))
+        elif action == "leave":
+            await g.leave()
+            await ctx.send(loc.get(ctx, mn, "config_server_left").format(g.name))
+        else:
+            await help.send_cmd_help(ctx, ctx.command, True)
+
+    @checks.bot_owner()
     @config.command(brief="config_invite_brief", name="invite", hidden=False)
     async def set_invite(self, ctx, link: str = None):
         if not link:

@@ -27,6 +27,11 @@
   "config_shard" : "{0} shard(s)",
   "config_shard_n" : "Shard #{0}",
   "config_shard_v" : "Latency: `{0} ms`\nDisconnected: {1}\nRate limited: {2}",
+  "config_servers" : "{0} server(s)",
+  "config_servers_desc" : "Name: {0}\nOwner: `{1}`",
+  "config_server_info" : "Name: {0} (`{1}`)\nShard #{2}, Available: {3}",
+  "config_server_left" : "Successfully left {0}.",
+  "server_notfound" : "Server has not been found.",
   "invite_disabled": "The invite link for this bot has been disabled.",
   "invite" : "Here's the link to invite this bot on your server: {0}"
 }

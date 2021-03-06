@@ -27,6 +27,11 @@
   "config_shard" : "{0} shard(s)",
   "config_shard_n" : "Shard {0}",
   "config_shard_v" : "Latence: `{0} ms`\nDéconnecté: {1}\nLimité: {2}",
+  "config_servers" : "{0} serveur(s)",
+  "config_servers_desc" : "Nom: {0}\nPropriétaire: `{1}`",
+  "config_server_info" : "Nom: {0} (`{1}`)\nShard {2}, Disponible: {3}",
+  "config_server_left" : "Serveur {0} quitté.",
+  "server_notfound" : "Le serveur n'a pas été trouvé.",
   "invite_disabled": "Le lien d'invitation pour ce bot a été désactivé.",
   "invite" : "Voici un lien pour inviter ce bot sur votre serveur: {0}"
 }
