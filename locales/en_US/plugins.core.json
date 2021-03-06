@@ -26,7 +26,7 @@
   "config_presence_set" : "The bot's presence has been updated.",
   "config_shard" : "{0} shard(s)",
   "config_shard_n" : "Shard #{0}",
-  "config_shard_v" : "Latency: `{0} ms`\nDisconnected: {1}\nRate limited: {2}",
+  "config_shard_v" : "Latency: `{0} ms`\nConnected: {1}\nRate limited: {2}",
   "config_servers" : "{0} server(s)",
   "config_servers_desc" : "Name: {0}\nOwner: `{1}`",
   "config_server_info" : "Name: {0} (`{1}`)\nShard #{2}, Available: {3}",

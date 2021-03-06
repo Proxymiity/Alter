@@ -90,7 +90,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
         for s in sds:
             pages.append([loc.get(ctx, mn, "config_shard_n").format(sds[s].id),
                           loc.get(ctx, mn, "config_shard_v").format(int(sds[s].latency*1000),
-                                                                    loc.get(ctx, mn, str(sds[s].is_closed())),
+                                                                    loc.get(ctx, mn, str(not sds[s].is_closed())),
                                                                     loc.get(ctx, mn, str(sds[s].is_ws_ratelimited())))])
         for e in tools.paginate(pages, discord.Embed(color=discord.Color.teal()), first, True):
             await ctx.send(embed=e)
