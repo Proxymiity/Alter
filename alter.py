@@ -41,9 +41,9 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.CommandOnCooldown):
         await ctx.send(loc.get(ctx, mn, "err_cd").format(error.retry_after))
     elif isinstance(error, commands.MissingRequiredArgument):
-        await help.send_cmd_help(ctx, ctx.command, error=True)
+        await help.send_cmd_help(ctx, error=True)
     elif isinstance(error, commands.BadArgument):
-        await help.send_cmd_help(ctx, ctx.command, error=True)
+        await help.send_cmd_help(ctx, error=True)
     elif isinstance(error, commands.CommandInvokeError):
         if isinstance(error.original, discord.Forbidden):
             await ctx.send(loc.get(ctx, mn, "err_missing_perm"))

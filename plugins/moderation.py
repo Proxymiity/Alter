@@ -104,7 +104,7 @@ class Moderation(commands.Cog):
     @commands.command(help="purge_help", brief="purge_brief")
     async def purge(self, ctx, nb: int, user: discord.User = None):
         if not nb >= 1:
-            await help.send_cmd_help(ctx, ctx.command, error=True)
+            await help.send_cmd_help(ctx, error=True)
             return
         await ctx.message.delete()
         if user:

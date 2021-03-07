@@ -33,7 +33,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.group(help="plugin_help", brief="plugin_brief")
     async def plugin(self, ctx):
         if ctx.invoked_subcommand is None:
-            await help.send_cmd_help(ctx, ctx.command)
+            await help.send_cmd_help(ctx)
 
     @checks.bot_owner()
     @plugin.command(brief="plugin_load_brief", hidden=False)
@@ -78,7 +78,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.group(help="config_help", brief="config_brief", aliases=["conf"])
     async def config(self, ctx):
         if ctx.invoked_subcommand is None:
-            await help.send_cmd_help(ctx, ctx.command)
+            await help.send_cmd_help(ctx)
 
     @checks.bot_owner()
     @config.command(brief="config_shard_brief", name="shards", hidden=False)
@@ -118,7 +118,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
             await g.leave()
             await ctx.send(loc.get(ctx, mn, "config_server_left").format(g.name))
         else:
-            await help.send_cmd_help(ctx, ctx.command, True)
+            await help.send_cmd_help(ctx, error=True)
 
     @checks.bot_owner()
     @config.command(brief="config_invite_brief", name="invite", hidden=False)
@@ -145,7 +145,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     @config.command(help="config_status_help", brief="config_status_brief", name="status", hidden=False)
     async def set_status(self, ctx, status=None):
         if status not in ["online", "idle", "dnd", "offline"]:
-            await help.send_cmd_help(ctx, ctx.command, error=True)
+            await help.send_cmd_help(ctx, error=True)
             return
         db.write("settings", 0, "status", status)
         await self.bot.change_presence(status=tools.get_status(status))
@@ -155,7 +155,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     @config.command(help="config_presence_help", brief="config_presence_brief", name="presence", hidden=False)
     async def set_presence(self, ctx, p_type, *, p_val=None):
         if p_type not in ["none", "game", "listen", "watch", "compete", "stream"] or not p_val and p_type != "none":
-            await help.send_cmd_help(ctx, ctx.command, error=True)
+            await help.send_cmd_help(ctx, error=True)
             return
         if p_type == "none":
             db.write("settings", 0, "presence_type", "none")

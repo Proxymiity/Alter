@@ -44,7 +44,8 @@ async def send_plugin_help(ctx, cog):
         await ctx.send(embed=to_send)
 
 
-async def send_cmd_help(ctx, cmd, error=False):
+async def send_cmd_help(ctx, cmd=None, error=False):
+    cmd = cmd or ctx.command
     desc = loc.get(ctx, mn, "help_undef")
     if cmd.brief:
         desc = loc.get(ctx, dn, cmd.brief)
