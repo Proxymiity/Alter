@@ -13,11 +13,11 @@ def get(ctx, mod, key):
 
 
 def load(locale, module, key):
-    file = "locales/{}/{}.json".format(locale, module)
+    file = f"locales/{locale}/{module}.json"
     if os.path.isfile(file):
         try:
             return dataIO.load_json(file)[key]
         except KeyError:
-            return "Missing locale {}.{}-{}".format(module, key, locale)
+            return f"Missing locale {module}.{key}-{locale}"
     else:
-        return "Missing module {}.{}-{}".format(module, key, locale)
+        return f"Missing module {module}.{key}-{locale}"

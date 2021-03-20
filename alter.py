@@ -54,7 +54,7 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.CheckFailure):
         pass
     else:
-        print("Uncaught exception {}".format(error))
+        print(f"Uncaught exception {error}")
         dataIO.save_json("error.json", [error])
         await ctx.send(loc.get(ctx, mn, "err_uncaught"))
 

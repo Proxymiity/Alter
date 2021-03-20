@@ -7,12 +7,12 @@ class DataIO:
     def save_json(self, filename, data):
         rnd = randint(1000, 9999)
         path, ext = os.path.splitext(filename)
-        tmp_file = "{}-{}.tmp".format(path, rnd)
+        tmp_file = f"{path}-{rnd}.tmp"
         self._save_json(tmp_file, data)
         try:
             self._read_json(tmp_file)
         except json.decoder.JSONDecodeError:
-            print("JSON integrity check on temp file for {} has failed. Original file unaltered.".format(filename))
+            print(f"JSON integrity check on temp file for {filename} has failed. Original file unaltered.")
             return False
         os.replace(tmp_file, filename)
         return True

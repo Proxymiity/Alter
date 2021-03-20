@@ -12,18 +12,18 @@ def sanitize(val):
 
 def create_table(name: str):
     name = sanitize(name)
-    dbc.execute("CREATE TABLE IF NOT EXISTS {}(sid INTEGER, name TEXT, value TEXT)".format(name))
+    dbc.execute(f"CREATE TABLE IF NOT EXISTS {name}(sid INTEGER, name TEXT, value TEXT)")
 
 
 def delete_table(name: str):
     name = sanitize(name)
-    dbc.execute("DROP TABLE IF EXISTS {}".format(name))
+    dbc.execute(f"DROP TABLE IF EXISTS {name}")
 
 
 def read(table: str, sid: int, name: str):
     table = sanitize(table)
     try:
-        dbc.execute("SELECT value FROM {} WHERE sid=(?) AND name=(?)".format(table), (sid, name))
+        dbc.execute(f"SELECT value FROM {table} WHERE sid=(?) AND name=(?)", (sid, name))
         value = dbc.fetchall()[0][0]
     except IndexError:
         value = None
@@ -33,13 +33,13 @@ def read(table: str, sid: int, name: str):
 def write(table: str, sid: int, name: str, value: str):
     table = sanitize(table)
     if read(table, sid, name) is None:
-        dbc.execute("INSERT INTO {}(sid, name, value) VALUES (?, ?, ?)".format(table), (sid, name, value))
+        dbc.execute(f"INSERT INTO {table}(sid, name, value) VALUES (?, ?, ?)", (sid, name, value))
     else:
-        dbc.execute("UPDATE {} SET value=(?) WHERE sid=(?) AND name=(?)".format(table), (value, sid, name))
+        dbc.execute(f"UPDATE {table} SET value=(?) WHERE sid=(?) AND name=(?)", (value, sid, name))
     db.commit()
 
 
 def delete(table: str, sid: int, name: str):
     table = sanitize(table)
-    dbc.execute("DELETE FROM {} WHERE sid=(?) AND name=(?)".format(table), (sid, name))
+    dbc.execute(f"DELETE FROM {table} WHERE sid=(?) AND name=(?)", (sid, name))
     db.commit()

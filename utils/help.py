@@ -16,7 +16,7 @@ async def summary(bot, ctx):
     cl = ""
     cogs = sorted(bot.cogs)
     for cog in cogs:
-        cl = cl + "`{}` {}\n".format(cog, loc.get(ctx, dn, cog.lower()))
+        cl = cl + f"`{cog}` {loc.get(ctx, dn, cog.lower())}\n"
     embed = discord.Embed(title=loc.get(ctx, mn, "help_title"),
                           description=loc.get(ctx, mn, "about_bot").format(db.read("settings", 0, "name")),
                           color=discord.Color.teal())

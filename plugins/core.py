@@ -100,7 +100,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
     async def list_servers(self, ctx):
         servers = []
         for s in self.bot.guilds:
-            servers.append(["`{}`".format(s.id), loc.get(ctx, mn, "config_servers_desc").format(s.name, s.owner_id)])
+            servers.append([f"`{s.id}`", loc.get(ctx, mn, "config_servers_desc").format(s.name, s.owner_id)])
         for x in tools.paginate_text(servers, first=loc.get(ctx, mn, "config_servers").format(len(self.bot.guilds)),
                                      mid_sep="\n", line_sep="\n\n"):
             await ctx.send(x)
@@ -187,7 +187,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
         h, r = divmod(int(diff.total_seconds()), 3600)
         m, s = divmod(r, 60)
         d, h = divmod(h, 24)
-        up = "{}:{}:{}:{}".format(d, h, m, s)
+        up = f"{d}:{h}:{m}:{s}"
         embed.set_author(name=bot.name, icon_url=str(bot.avatar_url))
         embed.add_field(name=loc.get(ctx, mn, "info_bot_title"),
                         value=loc.get(ctx, mn, "info_bot").format(owner, len(self.bot.users),

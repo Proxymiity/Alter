@@ -9,16 +9,16 @@ args = sys.argv
 if len(args) == 1:
     print("db_config.py: small utility to input into the Alter database")
     print("this only allows to edit the 'settings' table")
-    print("- ./{} <key>: show value for key".format(args[0]))
-    print("- ./{} <key> <value>: set value for key".format(args[0]))
-    print("Example: ./{} name Alter".format(args[0]))
+    print(f"- ./{args[0]} <key>: show value for key")
+    print(f"- ./{args[0]} <key> <value>: set value for key")
+    print(f"Example: ./{args[0]} name Alter")
 
 if len(args) == 2:
     val = db.read("settings", 0, args[1])
     if val:
-        print("{}: {}".format(args[1], val))
+        print(f"{args[1]}: {val}")
     else:
-        print("'{}' is not present in the database.".format(args[1]))
+        print(f"'{args[1]}' is not present in the database.")
         print("Hint: Values are case-sensitive, please make sure you typed the value correctly.")
         exit(2)
 
