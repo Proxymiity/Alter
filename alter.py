@@ -22,7 +22,10 @@ async def on_ready():
     bot.remove_command("help")
     for p in config["loadPlugins"]:
         print(loc.load(dl, mn, "loading_ext").format(p))
-        bot.load_extension(p)
+        try:
+            bot.load_extension(p)
+        except commands.ExtensionAlreadyLoaded:
+            print(loc.load(dl, mn, "loading_ext_failed"))
     await bot.change_presence(status=tools.get_status(db.read("settings", 0, "status")),
                               activity=tools.get_presence(db.read("settings", 0, "presence_type"),
                                                           db.read("settings", 0, "presence_value")))

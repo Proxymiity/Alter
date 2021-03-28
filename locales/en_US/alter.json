@@ -2,6 +2,7 @@
   "logging_in" : "Logging in with token {0}...",
   "logged_in_as" : "Logged in as {0}.",
   "loading_ext" : "Loading extension {0}",
+  "loading_ext_failed" : "Extension already loaded. This could be due to a disconnection.",
   "err_uncaught" : "An uncaught error has occurred. This error has been displayed in the console.",
   "err_exec" :  "An error occurred while executing this command. Error: `{0}`",
   "err_disabled" : "This command has been temporarily disabled.",

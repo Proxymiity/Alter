@@ -2,6 +2,7 @@
   "logging_in" : "Connexion avec le token {0}...",
   "logged_in_as" : "Connecté en tant que {0}.",
   "loading_ext" : "Chargement de l'extension {0}",
+  "loading_ext_failed" : "L'extension a déjà été chargée. Il est possible qu'une déconnexion soit survenue.",
   "err_uncaught" : "Une erreur interne non gérée est survenue. L'erreur a été affichée en console.",
   "err_exec" :  "Une erreur est survenue lors de l'exécution de la commande. Erreur survenue: `{0}`",
   "err_disabled" : "Cette commande est temporairement désactivée.",
