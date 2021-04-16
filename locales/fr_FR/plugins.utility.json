@@ -1,4 +1,6 @@
 {
+  "False" : "Non",
+  "True" : "Oui",
   "user_notfound" : "Impossible de trouver cet utilisateur.",
   "id": "Identifiant: {0}",
   "general" : "Général",
@@ -12,9 +14,13 @@
   "srv_history" : "Date de création: {0}\nJours depuis la création: {1} jours",
   "srv_misc" : "Limite de taille des fichiers: `{0} MB`\nLimite de bande passante: `{1} kbps`\nFiltre de contenu: {2}\nVérification: {3}",
   "usr_general" : "Nom complet: {0}#{1}\nNom d'affichage: {2}\nStatut: {3}\n[URL de l'image]({4})",
+  "usr_general_id" : "Nom: {0}#{1}\n[URL de l'image]({2})",
   "usr_roles" : "{0}\nListe: {1}",
   "usr_history" : "Date de création du compte: {0} (il y a {1} jours)\nDate d'arrivée: {2} (il y a {3} jours)",
+  "usr_history_id" : "Date de création du compte: {0} (il y a {1} jours)",
   "usr_misc" : "Tags: {0}",
+  "usr_misc_id" : "Utilisateur système: {0}\nTags: {1}",
+  "usr_reduced_info" : "Une partie des informations ne peut pas être affichée avec cette commande.",
   "ct_filter" : {
     "disabled" : "Désactivé",
     "no_role" : "Membres sans rôle",

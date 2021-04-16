@@ -42,6 +42,7 @@
   "serverinfo_help" : "Affiche diverses informations liées au serveur Discord.",
   "userinfo_brief" : "Affiche les informations d'un utilisateur",
   "userinfo_help" : "Affiche diverses informations liées a un utilisateur. Par défaut, affiche vos informations.",
+  "g_userinfo_help" : "Affiche diverses informations liées a un utilisateur grâce à son identifiant.",
   "lang_brief" : "Change la langue utilisée sur ce serveur",
   "lang_help" : "Change la langue utilisée dans les messages. Le nom des commandes ne change pas."
 }

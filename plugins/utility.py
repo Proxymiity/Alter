@@ -71,6 +71,33 @@ class Utility(commands.Cog):
         ))
         await ctx.send(embed=embed)
 
+    @commands.command(help="g_userinfo_help", brief="userinfo_brief", aliases=["guser"], name="guserinfo")
+    async def g_userinfo(self, ctx, user: int = None):
+        if not user:
+            await ctx.send(loc.get(ctx, mn, "user_invalid_format"))
+            return
+        try:
+            u = await self.bot.fetch_user(user)
+        except discord.NotFound:
+            await ctx.send(loc.get(ctx, mn, "user_notfound"))
+            return
+        delta_c = datetime.now() - u.created_at
+        embed = discord.Embed(color=discord.Color.teal(), title=u.name)
+        embed.set_footer(text=loc.get(ctx, mn, "usr_reduced_info").format(u.id))
+        embed.set_thumbnail(url=u.avatar_url)
+        embed.add_field(name=loc.get(ctx, mn, "general"), value=loc.get(ctx, mn, "usr_general_id").format(
+            u.name, u.discriminator, u.avatar_url
+        ))
+        embed.add_field(name=loc.get(ctx, mn, "history"), value=loc.get(ctx, mn, "usr_history_id").format(
+            u.created_at.strftime(loc.get(ctx, "region", "date")), int(delta_c.days)
+        ))
+        embed.add_field(name=loc.get(ctx, mn, "misc"), value=loc.get(ctx, mn, "usr_misc_id").format(
+            loc.get(ctx, mn, str(u.system)),
+            ", ".join([loc.get(ctx, mn, "flags")[p[0]] for p in u.public_flags if p[1] is True]) or
+            loc.get(ctx, mn, "empty")
+        ))
+        await ctx.send(embed=embed)
+
 
 def setup(bot):
     plugin = Utility(bot)

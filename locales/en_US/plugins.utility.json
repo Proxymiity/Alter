@@ -1,4 +1,6 @@
 {
+  "False" : "No",
+  "True" : "Yes",
   "user_notfound" : "Cannot find this user.",
   "id": "ID: {0}",
   "general" : "General",
@@ -12,9 +14,13 @@
   "srv_history" : "Creation date: {0}\nDays since creation: {1} days",
   "srv_misc" : "Filesize limit: `{0} MB`\nBitrate limit: `{1} kbps`\nContent filter: {2}\nVerification: {3}",
   "usr_general" : "Full name: {0}#{1}\nDisplay name: {2}\nStatus: {3}\n[Image URL]({4})",
+  "usr_general_id" : "Name: {0}#{1}\n[Image URL]({2})",
   "usr_roles" : "{0}\nList: {1}",
   "usr_history" : "Account creation date: {0} ({1} days ago)\nDate joined server: {2} ({3} days ago)",
+  "usr_history_id" : "Account creation date: {0} ({1} days ago)",
   "usr_misc" : "Flags: {0}",
+  "usr_misc_id" : "System User: {0}\nFlags: {1}",
+  "usr_reduced_info" : "Some infos cannot be shown using this command.",
   "ct_filter" : {
     "disabled" : "Disabled",
     "no_role" : "Members without a role",
