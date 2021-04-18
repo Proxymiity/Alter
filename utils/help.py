@@ -1,12 +1,8 @@
 import discord
 from discord.ext import commands as discord_commands
-from utils.dataIO import dataIO
-from utils import tools
+from utils import db, tools
 from utils import locale as loc
-from importlib import import_module
 
-config = dataIO.load_json("data/config.json")
-db = import_module(config["storage"])
 mn = "utils.help"
 dn = "commands"
 prefix = db.read("settings", 0, "prefix")

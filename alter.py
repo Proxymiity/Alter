@@ -1,14 +1,12 @@
 import discord
 from discord.ext import commands
 from utils.dataIO import dataIO
-from utils import tools; tools.check_defaults()
+from utils import db, tools
 from utils import locale as loc
 from utils import help
 from datetime import datetime
-from importlib import import_module
 
 config = dataIO.load_json("data/config.json")
-db = import_module(config["storage"])
 mn = "alter"
 dl = db.read("settings", 0, "locale")
 token = config["token"]

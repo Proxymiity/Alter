@@ -1,7 +1,6 @@
-from utils.dataIO import dataIO
 import os
-from importlib import import_module
-db = import_module(dataIO.load_json("data/config.json")["storage"])
+from utils import db
+from utils.dataIO import dataIO
 
 
 def get(ctx, mod, key):

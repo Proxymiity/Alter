@@ -1,14 +1,12 @@
 import discord
 from discord.ext import commands
 from utils.dataIO import dataIO
-from utils import checks, help, tools
+from utils import db, checks, help, tools
 from utils import locale as loc
 from datetime import datetime
-from importlib import import_module
 
 config = dataIO.load_json("data/config.json")
 locales = dataIO.load_json("locales/locales.json")
-db = import_module(config["storage"])
 mn = "plugins.core"
 inv_d = "https://bot.proxymiity.fr/@/"
 
