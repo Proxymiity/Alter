@@ -104,7 +104,7 @@ class Utility(commands.Cog):
     async def fetch(self, ctx, invite):
         try:
             f = await self.bot.fetch_invite(invite, with_counts=True)
-        except discord.HTTPException or discord.NotFound:
+        except (discord.HTTPException, discord.NotFound):
             await ctx.send(loc.get(ctx, mn, "fetch_error"))
             return
         if invite is None:
@@ -116,7 +116,7 @@ class Utility(commands.Cog):
         if f.guild.icon_url:
             embed.set_thumbnail(url=f.guild.icon_url)
         if f.inviter:
-            inviter = loc.get(ctx, mn, "user").format(f.inviter.name, f.invite.discriminator)
+            inviter = loc.get(ctx, mn, "user").format(f.inviter.name, f.inviter.discriminator)
             embed.set_footer(text=loc.get(ctx, mn, "inv_f").format(f.inviter.id, f.guild.id))
         else:
             inviter = loc.get(ctx, mn, "empty")
