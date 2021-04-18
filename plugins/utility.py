@@ -17,6 +17,8 @@ class Utility(commands.Cog):
         online = len([m.status for m in g.members if m.status != discord.Status.offline])
         delta = datetime.now() - g.created_at
         embed = discord.Embed(color=discord.Color.teal(), title=g.name)
+        if g.description:
+            embed = discord.Embed(color=discord.Color.teal(), title=g.name, description=g.description)
         embed.set_footer(text=loc.get(ctx, mn, "id").format(g.id))
         if g.icon_url:
             embed.set_thumbnail(url=g.icon_url)
@@ -109,6 +111,8 @@ class Utility(commands.Cog):
             await ctx.send(loc.get(ctx, mn, "fetch_error"))
             return
         embed = discord.Embed(color=discord.Color.teal(), title=f.guild.name)
+        if f.guild.description:
+            embed = discord.Embed(color=discord.Color.teal(), title=f.guild.name, description=f.guild.description)
         if f.guild.icon_url:
             embed.set_thumbnail(url=f.guild.icon_url)
         if f.inviter:
