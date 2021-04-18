@@ -27,7 +27,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
         if "kill" in opt:
             exit(-1)
         else:
-            await self.bot.logout()
+            await self.bot.close()
 
     @checks.bot_owner()
     @commands.group(help="plugin_help", brief="plugin_brief")
