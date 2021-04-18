@@ -44,5 +44,7 @@
   "userinfo_help" : "Show different infos related to an user in this server. Defaults to your user.",
   "g_userinfo_help" : "Show different infos related to an user in this server using its Discord ID.",
   "lang_brief" : "Changes the bot's language on this server",
-  "lang_help" : "Change the language used in messages. Commands name does not change."
+  "lang_help" : "Change the language used in messages. Commands name does not change.",
+  "fetch_brief" : "Fetches an invite",
+  "fetch_help" : "Fetch and show details about an invitation to a server."
 }

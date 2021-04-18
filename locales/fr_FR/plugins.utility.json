@@ -53,5 +53,13 @@
     "bug_hunter_level_2" : "Chasseur de bugs niveau II",
     "verified_bot" : "Bot Vérifié",
     "verified_bot_developer" : "Développeur de bot vérifié"
-  }
+  },
+  "fetch_error" : "Impossible de récupérer cette invitation. Elle a peut-être expiré, ou est invalide.",
+  "user" : "{0}#{1}",
+  "inv_f_no_user" : "ID du serveur: {0}",
+  "inv_f": "ID de l'inviteur: {0} | ID du serveur: {1}",
+  "inv_details" : "Détails de l'invitation",
+  "inv_details_v" : "Identifiant: {0}\nInviteur: {1}\n[Cliquez pour accepter l'invitation]({2})",
+  "inv_guild" : "Serveur lié",
+  "inv_guild_v" : "Membres en ligne/total: {0}/{1}\nCanal: #{2}"
 }

@@ -53,5 +53,13 @@
     "bug_hunter_level_2" : "Bug Hunter II",
     "verified_bot" : "Verified Bot",
     "verified_bot_developer" : "Verified Bot Developer"
-  }
+  },
+  "fetch_error" : "Unable to fetch invite. Perhaps it has expired, or is invalid.",
+  "user" : "{0}#{1}",
+  "inv_f_no_user" : "Server ID: {0}",
+  "inv_f": "Inviter ID: {0} | Server ID: {1}",
+  "inv_details" : "Invite Details",
+  "inv_details_v" : "ID: {0}\nInviter: {1}\n[Click to accept invite]({2})",
+  "inv_guild" : "Linked Server",
+  "inv_guild_v" : "Online/Total members: {0}/{1}\nChannel: #{2}"
 }

@@ -98,6 +98,33 @@ class Utility(commands.Cog):
         ))
         await ctx.send(embed=embed)
 
+    @commands.command(help="fetch_help", brief="fetch_brief")
+    async def fetch(self, ctx, invite):
+        try:
+            f = await self.bot.fetch_invite(invite, with_counts=True)
+        except discord.HTTPException or discord.NotFound:
+            await ctx.send(loc.get(ctx, mn, "fetch_error"))
+            return
+        if invite is None:
+            await ctx.send(loc.get(ctx, mn, "fetch_error"))
+            return
+        embed = discord.Embed(color=discord.Color.teal(), title=f.guild.name)
+        if f.guild.icon_url:
+            embed.set_thumbnail(url=f.guild.icon_url)
+        if f.inviter:
+            inviter = loc.get(ctx, mn, "user").format(f.inviter.name, f.invite.discriminator)
+            embed.set_footer(text=loc.get(ctx, mn, "inv_f").format(f.inviter.id, f.guild.id))
+        else:
+            inviter = loc.get(ctx, mn, "empty")
+            embed.set_footer(text=loc.get(ctx, mn, "inv_f_no_user").format(f.guild.id))
+        embed.add_field(name=loc.get(ctx, mn, "inv_details"), value=loc.get(ctx, mn, "inv_details_v").format(
+            f.code, inviter, f.url
+        ))
+        embed.add_field(name=loc.get(ctx, mn, "inv_guild"), value=loc.get(ctx, mn, "inv_guild_v").format(
+            f.approximate_presence_count, f.approximate_member_count, f.channel.name or loc.get(ctx, mn, "empty")
+        ))
+        await ctx.send(embed=embed)
+
 
 def setup(bot):
     plugin = Utility(bot)
