@@ -1,3 +1,4 @@
+import discord
 from discord import Permissions
 from discord.ext import commands
 from utils.dataIO import dataIO
@@ -26,9 +27,9 @@ def server_owner_raw(ctx):
         return False
 
 
-def permissions(perms):
+def permissions(**perms):
     def check(ctx):
-        return server_perms(ctx, perms)
+        return server_perms(ctx, discord.Permissions(**perms))
     return commands.check(check)
 
 

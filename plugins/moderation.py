@@ -10,7 +10,7 @@ class Moderation(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @checks.permissions(discord.Permissions(ban_members=True))
+    @checks.permissions(ban_members=True)
     @commands.guild_only()
     @commands.command(help="ban_help", brief="ban_brief")
     async def ban(self, ctx, user: discord.User, *, reason=None):
@@ -32,7 +32,7 @@ class Moderation(commands.Cog):
         await member.ban(reason=reason, delete_message_days=0)
         await ctx.send(loc.get(ctx, mn, "ban_success").format(member.name, reason))
 
-    @checks.permissions(discord.Permissions(kick_members=True))
+    @checks.permissions(kick_members=True)
     @commands.guild_only()
     @commands.command(help="kick_help", brief="kick_brief")
     async def kick(self, ctx, user: discord.User, *, reason=None):
@@ -54,7 +54,7 @@ class Moderation(commands.Cog):
         await member.kick(reason=reason)
         await ctx.send(loc.get(ctx, mn, "kick_success").format(member.name, reason))
 
-    @checks.permissions(discord.Permissions(ban_members=True))
+    @checks.permissions(ban_members=True)
     @commands.guild_only()
     @commands.command(help="idban_help", brief="idban_brief")
     async def idban(self, ctx, user: int, *, reason=None):
@@ -79,7 +79,7 @@ class Moderation(commands.Cog):
                     member = x.user
             await ctx.send(loc.get(ctx, mn, "ban_success").format(member.name, reason))
 
-    @checks.permissions(discord.Permissions(ban_members=True))
+    @checks.permissions(ban_members=True)
     @commands.guild_only()
     @commands.command(help="unban_help", brief="unban_brief")
     async def unban(self, ctx, user):
@@ -99,7 +99,7 @@ class Moderation(commands.Cog):
                 return
         await ctx.send(loc.get(ctx, mn, "user_notfound"))
 
-    @checks.permissions(discord.Permissions(manage_messages=True))
+    @checks.permissions(manage_messages=True)
     @commands.guild_only()
     @commands.command(help="purge_help", brief="purge_brief")
     async def purge(self, ctx, nb: int, user: discord.User = None):
