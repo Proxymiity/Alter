@@ -1,3 +1,4 @@
+from discord import Permissions
 from discord.ext import commands
 from utils.dataIO import dataIO
 bot_owner_id = dataIO.load_json("data/config.json")["owner"]
@@ -25,7 +26,7 @@ def server_owner_raw(ctx):
         return False
 
 
-def permission(perms):
+def permissions(perms):
     def check(ctx):
         return server_perms(ctx, perms)
     return commands.check(check)
@@ -38,11 +39,5 @@ def server_perms(ctx, perms):
         return True
     elif not perms:
         return False
-    channel = ctx.message.channel
-    author = ctx.message.author
-    resolved = channel.permissions_for(author)
-    try:
-        return all(getattr(resolved, name, None) == value for name, value in perms.item())
-    except AttributeError:
-        return False
-    # https://gitlab.com/Proxymiity/proxybot/-/blob/master/releases/8.0.6/cogs/utils/checks.py
+    resolved = ctx.message.channel.permissions_for(ctx.message.author)
+    return perms <= resolved

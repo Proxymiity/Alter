@@ -218,7 +218,7 @@ class Core(commands.Cog, command_attrs=dict(hidden=True)):
         else:
             await help.summary(self.bot, ctx)
 
-    @checks.permission(discord.Permissions.manage_guild)
+    @checks.permissions(discord.Permissions(manage_guild=True))
     @commands.guild_only()
     @commands.command(hidden=False, help="lang_help", brief="lang_brief", aliases=["locale"])
     async def lang(self, ctx, lang=None):
