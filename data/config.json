@@ -1,7 +1,7 @@
 {
-    "token" : "",
-    "owner" : 0,
-    "loadPlugins" : [
+    "token": "",
+    "owner": 0,
+    "loadPlugins": [
         "plugins.core",
         "plugins.moderation",
         "plugins.utility"
