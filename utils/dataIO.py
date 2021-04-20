@@ -29,20 +29,24 @@ class DataIO:
         except json.decoder.JSONDecodeError:
             return False
 
-    def _read_json(self, filename):
+    @staticmethod
+    def _read_json(filename):
         with open(filename, encoding='utf-8', mode="r") as f:
             data = json.load(f)
         return data
 
-    def _save_json(self, filename, data):
+    @staticmethod
+    def _save_json(filename, data):
         with open(filename, encoding='utf-8', mode="w") as f:
             json.dump(data, f, indent=4, separators=(',', ': '))
         return data
 
-    def export_json(self, data):
+    @staticmethod
+    def export_json(data):
         return json.dumps(data)
 
-    def import_json(self, data):
+    @staticmethod
+    def import_json(data):
         return json.loads(data)
 
 
