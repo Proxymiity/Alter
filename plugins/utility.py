@@ -74,10 +74,7 @@ class Utility(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(help="g_userinfo_help", brief="userinfo_brief", aliases=["guser"], name="guserinfo")
-    async def g_userinfo(self, ctx, user: int = None):
-        if not user:
-            await ctx.send(loc.get(ctx, mn, "user_invalid_format"))
-            return
+    async def g_userinfo(self, ctx, user: int):
         try:
             u = await self.bot.fetch_user(user)
         except discord.NotFound:
