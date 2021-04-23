@@ -14,6 +14,7 @@ site_url = "https://www.pixiv.net/"
 icon_url = "https://www.pixiv.net/favicon.ico"
 user_url = "https://www.pixiv.net/users/{0}"
 art_url = "https://www.pixiv.net/artworks/{0}"
+create_url = "&create=1"
 
 
 class Pixiv(commands.Cog):
@@ -97,16 +98,14 @@ class Pixiv(commands.Cog):
             for x in ilu["meta_pages"]:
                 req = requests.get(proxy["api"].format(x["image_urls"]["original"], site_url))
                 if not req.json()["cached"]:
-                    requests.get(proxy["api"].format(x["image_urls"]["original"], site_url) + "&create=1")
+                    requests.get(proxy["api"].format(x["image_urls"]["original"], site_url) + create_url)
         else:
             req = requests.get(proxy["api"].format(ilu["meta_single_page"]["original_image_url"], site_url))
             if not req.json()["cached"]:
-                requests.get(proxy["api"].format(ilu["meta_single_page"]["original_image_url"], site_url)
-                             + "&create=1")
+                requests.get(proxy["api"].format(ilu["meta_single_page"]["original_image_url"], site_url) + create_url)
         i_req = requests.get(proxy["api"].format(ilu["user"]["profile_image_urls"]["medium"], site_url))
         if not i_req.json()["cached"]:
-            requests.get(proxy["api"].format(ilu["user"]["profile_image_urls"]["medium"], site_url)
-                         + "&create=1")
+            requests.get(proxy["api"].format(ilu["user"]["profile_image_urls"]["medium"], site_url) + create_url)
 
     async def _send_illustration(self, ctx, ilu, send_error=True):
         if ilu["x_restrict"] == 1:
