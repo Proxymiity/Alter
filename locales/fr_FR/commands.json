@@ -41,10 +41,14 @@
   "serverinfo_brief": "Affiche les informations du serveur",
   "serverinfo_help": "Affiche diverses informations liées au serveur Discord.",
   "userinfo_brief": "Affiche les informations d'un utilisateur",
-  "userinfo_help": "Affiche diverses informations liées a un utilisateur. Par défaut, affiche vos informations.",
+  "userinfo_help": "Affiche diverses informations liées a un utilisateur. Par défaut, affiche vos informations. L'utilisateur doit être membre du serveur.",
   "g_userinfo_help": "Affiche diverses informations liées a un utilisateur grâce à son identifiant.",
   "lang_brief": "Change la langue utilisée sur ce serveur",
   "lang_help": "Change la langue utilisée dans les messages. Le nom des commandes ne change pas.",
   "fetch_brief": "Récupère une invitation",
-  "fetch_help": "Récupère et affiche les détails d'une invitation à un serveur."
+  "fetch_help": "Récupère et affiche les détails d'une invitation à un serveur.",
+  "pixiv_brief": "Rechercher des artworks sur Pixiv",
+  "pixiv_help": "Recherche des artworks depuis [Pixiv](https://pixiv.net), une communautée japonaise pour les artistes et leurs travaux. **Ce module est en développement.**",
+  "pixiv_tags_brief": "Rechercher des artworks par tags",
+  "pixiv_tags_help": "Recherche des artworks sur Pixiv par tags. Ceci ne recherche pas les artworks par leurs noms."
 }

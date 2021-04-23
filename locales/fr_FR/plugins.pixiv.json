@@ -1,0 +1,21 @@
+{
+  "tag_search_empty": "Votre recherche n'a donné aucun résultat.",
+  "tag_timeout": "Menu des illustrations désactivé: Temps d'attente dépassé.",
+  "tag_no_next_page": "Il n'y a pas de prochaine page.",
+  "tag_sending": "Envoi des illustrations demandées - Le délai peut varier pendant que le bot cache les artworks.",
+  "tag_quit": "Menu des illustrations désactivé.",
+  "tag_choice_err": "Menu des illustrations désactivé: La valeur entrée n'est pas dans la liste.",
+  "tag_is_nsfw": "Impossible d'envoyer l'illustration: Ce canal n'est pas un canal NSFW.",
+  "tag_no_nsfw": "Le contenu NSFW a été désactivé sur ce bot.",
+  "tag_e_tags": "Tags",
+  "tag_e_id": "Identifiant: {0}",
+  "tag_e_id_page": "Identifiant: {0} | Page {1}/{2}",
+  "tag_e_sr": "Illustrations par tags",
+  "tag_e_desc": "Entrez un numéro de la liste ci-dessous pour envoyer une illustration.\nEntrez `next` pour aller à la page suivante.\nEntrez `all` pour envoyer tous les travaux.\nEntrez `quit` pour quitter.\n*Format: `nom` par `auteur` [nombre de pages]p*",
+  "tag_e_page": "Page {0}",
+  "tag_e_works": "Artworks",
+  "tag_e_works1": "Artworks (1/2)",
+  "tag_e_works2": "Artworks (1/2)",
+  "tag_fs": "**NSFW** `{0}` par `{1}` {2}p",
+  "tag_fs_nsfw": "`{0}` par `{1}` {2}p"
+}

@@ -4,7 +4,8 @@
     "loadPlugins": [
         "plugins.core",
         "plugins.moderation",
-        "plugins.utility"
+        "plugins.utility",
+        "plugins.pixiv"
     ],
     "storage": "db.sqlited"
 }

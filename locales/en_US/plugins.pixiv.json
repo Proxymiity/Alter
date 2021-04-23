@@ -1,0 +1,21 @@
+{
+  "tag_search_empty": "Your search query did not return any result.",
+  "tag_timeout": "Illustration menu disabled: Timeout exceeded.",
+  "tag_no_next_page": "There is no next page.",
+  "tag_sending": "Sending requested illustrations - The delay can vary while the bot is caching images.",
+  "tag_quit": "Illustration menu disabled.",
+  "tag_choice_err": "Illustration menu disabled: The value you provided is not in the list.",
+  "tag_is_nsfw": "Could not send that illustration: This channel isn't marked as NSFW.",
+  "tag_no_nsfw": "NSFW content has been disabled on this bot.",
+  "tag_e_tags": "Tags",
+  "tag_e_id": "ID: {0}",
+  "tag_e_id_page": "ID: {0} | Page {1}/{2}",
+  "tag_e_sr": "Illustrations by tags",
+  "tag_e_desc": "Type a number from the list below to send an illustration.\nType `next` to go to the next page.\nType `all` to send all works.\nType `quit` to quit.\n*Format: `name` by `author` [number of pages]p*",
+  "tag_e_page": "Page {0}",
+  "tag_e_works": "Works",
+  "tag_e_works1": "Works (1/2)",
+  "tag_e_works2": "Works (1/2)",
+  "tag_fs": "**NSFW** `{0}` by `{1}` {2}p",
+  "tag_fs_nsfw": "`{0}` by `{1}` {2}p"
+}

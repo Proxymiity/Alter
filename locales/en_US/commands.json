@@ -41,10 +41,14 @@
   "serverinfo_brief": "Shows info about this server",
   "serverinfo_help": "Show different infos related to this Discord server.",
   "userinfo_brief": "Shows info about an user",
-  "userinfo_help": "Show different infos related to an user in this server. Defaults to your user.",
+  "userinfo_help": "Show different infos related to an user in this server. Defaults to your user. The user must be a member of this server.",
   "g_userinfo_help": "Show different infos related to an user in this server using its Discord ID.",
   "lang_brief": "Changes the bot's language on this server",
   "lang_help": "Change the language used in messages. Commands name does not change.",
   "fetch_brief": "Fetches an invite",
-  "fetch_help": "Fetch and show details about an invitation to a server."
+  "fetch_help": "Fetch and show details about an invitation to a server.",
+  "pixiv_brief": "Gets artworks from Pixiv",
+  "pixiv_help": "Get artworks from [Pixiv](https://pixiv.net), a Japanese community for artists to share their works. **This module is a Work-In-Progress.**",
+  "pixiv_tags_brief": "Searches Pixiv artworks by tags",
+  "pixiv_tags_help": "Search Pixiv using tags. This does not searches works by their names."
 }
