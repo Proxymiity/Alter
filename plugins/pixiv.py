@@ -122,7 +122,7 @@ class Pixiv(commands.Cog):
         embed.set_author(name=ilu["user"]["name"][:256], url=user_url.format(ilu["user"]["id"]),
                          icon_url=proxy["cache"].format(ilu["user"]["profile_image_urls"]["medium"], site_url))
         tags = ", ".join([x["translated_name"] or x["name"] for x in ilu["tags"]])
-        embed.add_field(name="tag_e_tags", value=tags[:1024])
+        embed.add_field(name=loc.get(ctx, mn, "tag_e_tags"), value=tags[:1024])
         self._preload_cache(ilu)
         if ilu["meta_pages"]:
             y = 1
