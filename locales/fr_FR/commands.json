@@ -3,6 +3,7 @@
   "core": "Commandes principales du bot (aide, ping, etc.)",
   "moderation": "Commandes de modération (ban, idban, etc.)",
   "utility": "Commandes utilitaires (serverinfo, userinfo, etc.)",
+  "pixiv": "Commandes des artworks Pixiv (pixiv tags, etc.)",
 
   "help_brief": "Affiche les commandes disponibles",
   "help_help": "Affiche toutes les commandes disponibles. Par défaut, affiche la liste des modules.\nVous pouvez obtenir l'aide sur une commande précise avec `{0}help [commande]`, l'aide sur un module avec `{0}help [module]` et toutes les commandes avec `{0}help all`",
