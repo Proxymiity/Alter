@@ -108,7 +108,7 @@ class Pixiv(commands.Cog):
             requests.get(proxy["api"].format(ilu["user"]["profile_image_urls"]["medium"], site_url) + create_url)
 
     async def _send_illustration(self, ctx, ilu, send_error=True):
-        if ilu["x_restrict"] == 1:
+        if ilu["x_restrict"] >= 1:
             if not p_conf["allow_nsfw"]:
                 if send_error:
                     await ctx.send(loc.get(ctx, mn, "tag_no_nsfw"))
@@ -163,7 +163,7 @@ class Pixiv(commands.Cog):
 
     @staticmethod
     def _format_illustration(ctx, ilu):
-        r18 = True if ilu["x_restrict"] == 1 else False
+        r18 = True if ilu["x_restrict"] >= 1 else False
         if r18:
             ilu_string = loc.get(ctx, mn, "tag_fs")
         else:
