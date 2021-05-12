@@ -2,6 +2,7 @@ import discord
 import asyncio
 import requests
 import pixivpy3
+from hashlib import md5
 from discord.ext import commands
 from utils import help
 from utils import locale as loc
@@ -9,12 +10,11 @@ from utils.dataIO import dataIO
 
 p_conf = dataIO.load_json("data/pixiv.config.json")
 mn = "plugins.pixiv"
-proxy = {"cache": p_conf["image_proxy"], "api": p_conf["image_proxy_api"]}
+proxy = {"cache": p_conf["image_proxy"], "api": p_conf["image_proxy_api"], "key": p_conf["image_proxy_token"]}
 site_url = "https://www.pixiv.net/"
 icon_url = "https://www.pixiv.net/favicon.ico"
 user_url = "https://www.pixiv.net/users/{0}"
 art_url = "https://www.pixiv.net/artworks/{0}"
-create_url = "&create=1"
 
 
 class Pixiv(commands.Cog):
@@ -92,20 +92,14 @@ class Pixiv(commands.Cog):
             else:
                 return
 
-    @staticmethod
-    def _preload_cache(ilu):
-        if ilu["meta_pages"]:
-            for x in ilu["meta_pages"]:
-                req = requests.get(proxy["api"].format(x["image_urls"]["original"], site_url))
-                if not req.json()["cached"]:
-                    requests.get(proxy["api"].format(x["image_urls"]["original"], site_url) + create_url)
-        else:
-            req = requests.get(proxy["api"].format(ilu["meta_single_page"]["original_image_url"], site_url))
+    def _preload_cache(self, ilu):
+        img = [x["image_urls"]["original"] for x in ilu["meta_pages"]] if ilu["meta_pages"] \
+            else [ilu["meta_single_page"]["original_image_url"]]
+        img.append(ilu["user"]["profile_image_urls"]["medium"])
+        for x in img:
+            req = requests.get(self._cache_gen(x))
             if not req.json()["cached"]:
-                requests.get(proxy["api"].format(ilu["meta_single_page"]["original_image_url"], site_url) + create_url)
-        i_req = requests.get(proxy["api"].format(ilu["user"]["profile_image_urls"]["medium"], site_url))
-        if not i_req.json()["cached"]:
-            requests.get(proxy["api"].format(ilu["user"]["profile_image_urls"]["medium"], site_url) + create_url)
+                requests.get(self._cache_gen(x, True))
 
     async def _send_illustration(self, ctx, ilu, send_error=True):
         if ilu["x_restrict"] >= 1:
@@ -120,20 +114,20 @@ class Pixiv(commands.Cog):
         embed = discord.Embed(title=ilu["title"][:256], description=ilu["caption"][:2048],
                               url=art_url.format(ilu["id"]), color=discord.Color.teal())
         embed.set_author(name=ilu["user"]["name"][:256], url=user_url.format(ilu["user"]["id"]),
-                         icon_url=proxy["cache"].format(ilu["user"]["profile_image_urls"]["medium"], site_url))
+                         icon_url=self._cache_get(ilu["user"]["profile_image_urls"]["medium"]))
         tags = ", ".join([x["translated_name"] or x["name"] for x in ilu["tags"]])
         embed.add_field(name=loc.get(ctx, mn, "tag_e_tags"), value=tags[:1024])
         self._preload_cache(ilu)
         if ilu["meta_pages"]:
             y = 1
-            embed.set_image(url=proxy["cache"].format(ilu["meta_pages"][0]["image_urls"]["original"], site_url))
+            embed.set_image(url=self._cache_get(ilu["meta_pages"][0]["image_urls"]["original"]))
             embed.set_footer(text=loc.get(ctx, mn, "tag_e_id_page").format(
                 ilu["id"], y, len(ilu["meta_pages"])))
             to_send = [embed]
             y += 1
             for x in ilu["meta_pages"][1:]:
                 part_embed = discord.Embed(color=discord.Color.teal())
-                part_embed.set_image(url=proxy["cache"].format(x["image_urls"]["original"], site_url))
+                part_embed.set_image(url=self._cache_get(x["image_urls"]["original"]))
                 part_embed.set_footer(text=loc.get(ctx, mn, "tag_e_id_page").format(
                     ilu["id"], y, len(ilu["meta_pages"])))
                 to_send.append(part_embed)
@@ -141,7 +135,7 @@ class Pixiv(commands.Cog):
             for x in to_send:
                 await ctx.send(embed=x)
         else:
-            embed.set_image(url=proxy["cache"].format(ilu["meta_single_page"]["original_image_url"], site_url))
+            embed.set_image(url=self._cache_get(ilu["meta_single_page"]["original_image_url"]))
             embed.set_footer(text=loc.get(ctx, mn, "tag_e_id").format(ilu["id"]))
             await ctx.send(embed=embed)
 
@@ -181,6 +175,15 @@ class Pixiv(commands.Cog):
     def _refresh_tokens(self):
         self.app_token = self.app.auth(refresh_token=p_conf["refresh_token"])["access_token"]
         self.api_token = self.api.auth(refresh_token=p_conf["refresh_token"])["access_token"]
+
+    @staticmethod
+    def _cache_get(url: str):
+        h = md5(url.strip().encode('utf-8'))
+        return proxy["cache"].format(h.hexdigest())
+
+    @staticmethod
+    def _cache_gen(url: str, create: bool = False):
+        return proxy["api"].format(proxy["key"], url, site_url) + ("&create=1" if create else "")
 
 
 def setup(bot):

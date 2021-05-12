@@ -2,5 +2,6 @@
   "refresh_token": "",
   "image_proxy": "",
   "image_proxy_api": "",
+  "image_proxy_token": "",
   "allow_nsfw": false
 }
