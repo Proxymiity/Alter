@@ -1,5 +1,4 @@
 import discord
-from discord import Permissions
 from discord.ext import commands
 from utils.dataIO import dataIO
 bot_owner_id = dataIO.load_json("data/config.json")["owner"]
