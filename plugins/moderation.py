@@ -82,12 +82,13 @@ class Moderation(commands.Cog):
     @checks.permissions(ban_members=True)
     @commands.guild_only()
     @commands.command(help="unban_help", brief="unban_brief")
-    async def unban(self, ctx, user):
+    async def unban(self, ctx, *, user):
         for x in await ctx.guild.bans():
             if x.user.name == user:
                 await ctx.guild.unban(x.user)
                 await ctx.send(loc.get(ctx, mn, "unban_success").format(x.user.name))
                 return
+        for x in await ctx.guild.bans():
             try:
                 user = int(user)
             except ValueError:
